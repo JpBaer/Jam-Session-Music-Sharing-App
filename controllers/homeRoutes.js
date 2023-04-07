@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { Playlist, User } = require('../models');
+const withAuth = require('../utils/auth');
 //need to create utils folder that contains auth.js and link it here
 // projectData will need to be replaced with our model later on
 //might need to create helpers and link it here
 router.get('/', async (req, res) => {
     try {
-      const projectData = await Project.findAll({
+      const playlistData = await Playlist.findAll({
         include: [
           {
             model: User,
@@ -14,10 +15,10 @@ router.get('/', async (req, res) => {
         ],
       });
   
-      const projects = projectData.map((project) => project.get({ plain: true }));
+      const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
   
       res.render('homepage', { 
-        projects, 
+        playlists, 
         logged_in: req.session.logged_in 
       });
     } catch (err) {
@@ -25,9 +26,9 @@ router.get('/', async (req, res) => {
     }
   });
   
-  router.get('/project/:id', async (req, res) => {
+  router.get('/playlist/:id', async (req, res) => {
     try {
-      const projectData = await Project.findByPk(req.params.id, {
+      const playlistData = await Playlist.findByPk(req.params.id, {
         include: [
           {
             model: User,
@@ -36,10 +37,10 @@ router.get('/', async (req, res) => {
         ],
       });
   
-      const project = projectData.get({ plain: true });
+      const playlist = playlistData.get({ plain: true });
   
-      res.render('project', {
-        ...project,
+      res.render('playlist', {
+        ...playlist,
         logged_in: req.session.logged_in
       });
     } catch (err) {
@@ -47,23 +48,23 @@ router.get('/', async (req, res) => {
     }
   });
   //profile.js  file will be in public folder when done setting up
-  router.get('/profile', withAuth, async (req, res) => {
-    try {
-      const userData = await User.findByPk(req.session.user_id, {
-        attributes: { exclude: ['password'] },
-        include: [{ model: Project }],
-      });
+  // router.get('/profile', withAuth, async (req, res) => {
+  //   try {
+  //     const userData = await User.findByPk(req.session.user_id, {
+  //       attributes: { exclude: ['password'] },
+  //       include: [{ model: Playlist }],
+  //     });
   
-      const user = userData.get({ plain: true });
+  //     const user = userData.get({ plain: true });
   
-      res.render('profile', {
-        ...user,
-        logged_in: true
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+  //     res.render('profile', {
+  //       ...user,
+  //       logged_in: true
+  //     });
+  //   } catch (err) {
+  //     res.status(500).json(err);
+  //   }
+  // });
   
   router.get('/login', (req, res) => {
     if (req.session.logged_in) {
