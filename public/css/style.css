@@ -1,0 +1,42 @@
+h1 {
+    color: aliceblue;
+    font-family: 'Staatliches', cursive;
+    font-size: 120px;
+    color: #c81ce3;
+    opacity: 70%;
+    margin-top: 3%;
+    text-shadow: 3px 2px #0d050f;
+    }
+    
+    h4 {
+        color: aliceblue; 
+        font-family: 'Staatliches';
+        font-size: 35px;
+        color: #c81ce3;
+        opacity: 60%;
+        margin-top: 12%;
+    }
+
+    .full-screen-video-container {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    .full-screen-video-container video {
+        z-index: -1;
+      position: absolute;
+      height: auto;
+      width: auto;
+      min-width: 100%;
+      min-height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    
+
+    
+    
+    
