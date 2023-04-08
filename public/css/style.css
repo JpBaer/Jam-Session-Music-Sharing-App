@@ -35,7 +35,27 @@ h1 {
       transform: translate(-50%, -50%);
     }
     
+    #login-button, #signup-button {
+        font-family: 'Staatliches', cursive;
+        background-color: #c81ce3;
+        opacity: 60%;
+        border-radius: 8px;
+        color: #24396c;
+        height: 45px;
+        width: 65px;
+        font-size: 20px;
+    }
     
+    #signup-button {
+        height: 45px;
+        width: 80px;
+        font-size: 23px;
+    }
+    
+    .buttons {
+        margin-left: 17%;
+    
+    }
 
     
     
