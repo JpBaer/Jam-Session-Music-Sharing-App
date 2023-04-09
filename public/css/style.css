@@ -1,0 +1,61 @@
+h1 {
+    font-family: 'Staatliches', cursive;
+    font-size: 120px;
+    color: #c81ce3;
+    opacity: 70%;
+    margin-top: 3%;
+    text-shadow: 3px 2px #0d050f;
+    }
+    
+    h4 {
+    
+        font-family: 'Staatliches';
+        font-size: 35px;
+        color: #c81ce3;
+        opacity: 60%;
+        margin-top: 12%;
+    
+    }
+    
+    
+    
+    .full-screen-video-container {
+       
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    .full-screen-video-container video {
+        z-index: -1;
+      position: absolute;
+      height: auto;
+      width: auto;
+      min-width: 100%;
+      min-height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    #login-button, #signup-button {
+        font-family: 'Staatliches', cursive;
+        background-color: #c81ce3;
+        opacity: 60%;
+        border-radius: 8px;
+        color: #24396c;
+        height: 45px;
+        width: 65px;
+        font-size: 20px;
+    }
+    
+    #signup-button {
+        height: 45px;
+        width: 80px;
+        font-size: 23px;
+    }
+    
+    .buttons {
+        margin-left: 17%;
+    
+    }
