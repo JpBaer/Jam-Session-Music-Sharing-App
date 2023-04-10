@@ -1,18 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Jam Session</title>
-  <link rel="stylesheet" href="../public/css/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="videocss.css">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Document</title>
 </head>
 
 <body>
-  <div class="">
-    <header class="">
-      <h1>JamSession</h1>
-    </header>
-      <main class="">
-        {{{ body }}}
-      </main>
-  </div>
-  </body>
+
+    <div class="full-screen-video-container">
+        <video autoplay loop muted>
+            <source src="player2.mov">
+        </video>
+        <div class="text">
+            <h4>Welcome to</h4>
+            <h1>Jam Session</h1>
+        </div>
+        <div class="buttons">
+            <button id="login-button">Log In</button>
+            <button id="signup-button">Sign Up</button>
+        </div>
+    </div>
+</body>
 
 </html>
