@@ -1,4 +1,28 @@
-/*for homepage and user profile: background-image: linear-gradient(to right, #43245c, #b66aeb #7484e7 , #24396c);
+body {
+    background-image: linear-gradient(to right, #43245c, #b66aeb #7484e7 , #24396c);
    
+   }
+
+     /* primary font
+.primary2 {
+    font-family: 'Staatliches', cursive;
+}
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
 
 
+
+secondary font
+    .secondary2 {
+    font-family: 'Monda', sans-serif;
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Monda&display=swap" rel="stylesheet">
