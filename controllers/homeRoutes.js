@@ -6,20 +6,20 @@ const withAuth = require('../utils/auth');
 //might need to create helpers and link it here
 router.get('/', async (req, res) => {
     try {
-      const playlistData = await Playlist.findAll({
-        include: [
-          {
-            model: User,
-            attributes: ['name'],
-          },
-        ],
-      });
+      //const playlistData = await Playlist.findAll({
+       // include: [
+         // {
+          //  model: User,
+          //  attributes: ['name'],
+         // },
+        //],
+//});
   
-      const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
+     // const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
   
       res.render('homepage', { 
-        playlists, 
-        logged_in: req.session.logged_in 
+      //  playlists, 
+       // logged_in: req.session.logged_in 
       });
     } catch (err) {
       res.status(500).json(err);
