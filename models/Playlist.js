@@ -11,6 +11,10 @@ Playlist.init(
             autoIncrement: true,
             allowNull: false,
         },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         likes: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -20,6 +24,21 @@ Playlist.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        playlist_url: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        image_url: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "user",
+                key: "id"
+            }
+        }
     },
     {
         sequelize,
