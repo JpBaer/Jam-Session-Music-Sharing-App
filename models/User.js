@@ -37,7 +37,7 @@ User.init(
         },
         spotifyId: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
         // this value will only be present if the user has given us permissions and logged in to their spotify 
         // accessToken: {
