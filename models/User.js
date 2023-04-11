@@ -35,9 +35,26 @@ User.init(
                 len: [8],
             },
         },
-        spotifyId: {
-            type: DataTypes.INTEGER,
+        spotify_id: {
+            type: DataTypes.STRING,
             allowNull: true,
+        },
+        
+        top_songs: {
+        type: DataTypes.STRING,
+        allowNull: true
+        },
+        top_artists: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        followers: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        profile_picture_url: {
+            type: DataTypes.TEXT,
+            allowNull: true
         },
         // this value will only be present if the user has given us permissions and logged in to their spotify 
         // accessToken: {
