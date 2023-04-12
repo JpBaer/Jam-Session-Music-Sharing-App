@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Monda', sans-serif;
     margin: 0;
@@ -39,15 +43,22 @@ margin-left: 40%;
       }
     
    .signuparea {
-    margin-top: 400px;
+    margin-top: 600px;
    }
 
 #loginform {
     margin-left: 40%;
+    background-color: #5fe4fb;
+    opacity: 50%;
+    height: 200px;
+    width: 200px;
 }
 
 #signupform {
     margin-left: 0%;
+    margin-bottom: 300px;
+    background-color: #5fe4fb;
+    align-items: center;
 }
 
 h2 {
