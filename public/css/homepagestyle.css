@@ -29,7 +29,7 @@ body {
     text-shadow: 1px 1px #43245c;
 }
 
-#logout-btn {
+.logout-btn {
     background-color: #333;
     color: #fff;
     border: none;
