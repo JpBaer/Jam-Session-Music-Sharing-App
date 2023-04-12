@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Pop Rising",
+    "playlist_id":"37i9dQZF1DWUa8ZRTfalHk" ,
+    "playlist_url": "https://open.spotify.com/playlist/37i9dQZF1DWUa8ZRTfalHk",
+    "image_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fopen.spotify.com%2Fplaylist%2F37i9dQZF1DWUa8ZRTfalHk&psig=AOvVaw0oH-lwBfrD0YBBLSjF0QFL&ust=1681356850257000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKiPisG0o_4CFQAAAAAdAAAAABAE",
+    "user_id": "1"
+  },
+  {
+    "name": "Today's Top Hits",
+    "playlist_id": "37i9dQZF1DXcBWIGoYBM5M",
+    "playlist_url": "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M",
+    "image_url": "https://i.scdn.co/image/ab67706f000000028f08c7a754d07f324dc4f084",
+    "user_id": "2"
+  },
+  {
+    "name": "RapCaviar",
+    "playlist_id": "37i9dQZF1DX0XUsuxWHRQd",
+    "playlist_url": "https://open.spotify.com/playlist/37i9dQZF1DX0XUsuxWHRQd",
+    "image_url": "https://i.scdn.co/image/ab67706f0000000242f88e02cdd40476da82b0cf",
+    "user_id": "1"
+  }
+]
