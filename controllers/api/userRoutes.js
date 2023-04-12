@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
             return;
         }
     
-        const validPW = await userData.checkPW(req.body.password);
+        const validPW = await userData.checkPassword(req.body.password);
 
         if (!validPW) {
             res

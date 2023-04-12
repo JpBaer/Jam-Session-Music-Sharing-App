@@ -8,21 +8,31 @@ const sequelize = require('../config/connection');
 //need to create utils folder that contains auth.js and link it here
 // projectData will need to be replaced with our model later on
 //might need to create helpers and link it here
-router.get('/', async (req, res) => {
+
+router.get('/', async(req, res) => {
+  try {
+    res.render('intropage',
+    {logged_in: req.session.logged_in});
+  } catch(err) {
+    res.status(500).json(err)
+  }
+})
+
+router.get('/home', async (req, res) => {
     try {
-      // const playlistData = await Playlist.findAll({
-      //   include: [
-      //     {
-      //       model: User,
-      //       attributes: ['name'],
-      //     },
-      //   ],
-      // });
+      const playlistData = await Playlist.findAll({
+        include: [
+          {
+            model: User,
+            attributes: ['username'],
+          },
+        ],
+      });
   
-      // const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
-  
+      const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
+      console.log(playlists);
       res.render('homepage', { 
-        // playlists, 
+        playlists, 
         logged_in: req.session.logged_in
       });
     } catch (err) {
@@ -32,19 +42,24 @@ router.get('/', async (req, res) => {
   
   router.get('/user/:id', async (req, res) => {
     try {
-      // const playlistData = await Playlist.findByPk(req.params.id, {
-      //   include: [
-      //     {
-      //       model: User,
-      //       attributes: ['name'],
-      //     },
-      //   ],
-      // });
+      const userData = await User.findByPk(req.params.id, {
+        include: [
+          {
+            model: Playlist,
+          },
+        ],
+      });
   
-      // const playlist = playlistData.get({ plain: true });
-  
+      const user = userData.get({ plain: true });
+
+      user.top_songs = JSON.parse(user.top_songs)
+      user.top_artists = JSON.parse(user.top_artists)
+      console.log('*********************')
+      console.log(user);
+      console.log('*********************')
+
       res.render('user', {
-        // ...playlist,
+        ...user,
         logged_in: req.session.logged_in
       });
     } catch (err) {
@@ -55,7 +70,7 @@ router.get('/', async (req, res) => {
   
   router.get('/login', (req, res) => {
     if (req.session.logged_in) {
-      res.redirect('/');
+      res.redirect('/home');
       return;
     }
   
@@ -65,7 +80,7 @@ router.get('/', async (req, res) => {
   //********************************** */
 const clientId = '6b9d8ca2f7a34e56b1aef2f870ddc9b5';
 const clientSecret = 'd759d5c054d74ab1ad40ee3a3db52010'
-const redirectUri = 'http://localhost:3001';
+const redirectUri = 'http://localhost:3001/callback';
 //scopes are the what data we are asking the user to allow us access to
 // additional scopes: user-top-read user-library-read playlist-read-private playlist-read-collaborative
 const scopes = 'user-read-private user-read-email user-top-read user-library-read playlist-read-private playlist-read-collaborative';
@@ -91,6 +106,7 @@ router.get('/spotifylogin', function(req,res){
 //Will this '/' get interfere with loading the normal homepage? or can we have this in the api section?
 //This should bring the user to their populated homepage
 router.get('/callback', async (req, res) => {
+  var id = req.session.user_id;
     var code = req.query.code || null;
     console.log(code)
     //axios makes a call to spotify API with that code and recieves an access token
@@ -216,7 +232,7 @@ router.get('/callback', async (req, res) => {
                   };
 
                   
-                    const updatedUser = () => {User.update(newUserData,{
+                    const updatedUser = () => {User.update(newUserData, {
                       where:{
                         id: user_id
                       },
@@ -231,15 +247,15 @@ router.get('/callback', async (req, res) => {
                   // Run user.update to add tracks to user model
 
 
-                  res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
+                  // res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
                   const updateSpotifyData = async () => {
                     await createNewPlaylists();
                     await updatedUser();                 
                    }
 
                    updateSpotifyData();
+                   res.redirect(`/user/${id}`);
                 })
-
                 //catch for top tracks 
                 .catch(error=>{
                   res.send(error);
@@ -273,6 +289,7 @@ router.get('/callback', async (req, res) => {
         .catch(error => {
           res.send(error);
         });
+        
     });
   
   module.exports = router;
