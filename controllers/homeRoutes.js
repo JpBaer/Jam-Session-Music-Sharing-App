@@ -32,11 +32,21 @@ router.get('/home', withAuth, async (req, res) => {
           },
         ],
       });
-  
+      
+
       const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
       console.log(playlists);
+
+      var id = req.session.user_id;
+      const userData = await User.findByPk(id);
+
+      const user = userData.get({ plain: true}); 
+      console.log('****************************')
+      console.log(user);
+
       res.render('homepage', { 
         playlists, 
+        ...user,
         logged_in: req.session.logged_in
       });
     } catch (err) {
