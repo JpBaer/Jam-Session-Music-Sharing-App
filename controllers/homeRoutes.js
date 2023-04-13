@@ -7,7 +7,7 @@ const express = require('express');
 const sequelize = require('../config/connection');
 //need to create utils folder that contains auth.js and link it here
 // projectData will need to be replaced with our model later on
-//might need to create helpers and link it here.
+//might need to create helpers and link it here
 
 router.get('/', async (req, res) => {
   try {
