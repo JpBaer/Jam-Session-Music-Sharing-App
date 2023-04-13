@@ -18,6 +18,11 @@
 		<p id="user-welcome">Welcome, {{username}}!</p>
 		<button class = "logout-btn"id="logout">Log Out</button>
 	</div>
+
+    {{!--  --}}
+    {{#each playlists as |playlist|}}
+    {{> playlist-grid-item}}
+    {{/each}}
 	
 </body>
 
