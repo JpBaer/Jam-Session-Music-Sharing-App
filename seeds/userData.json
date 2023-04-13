@@ -28,5 +28,15 @@
     "top_artists":"['Baby Tate', 'Yeat', 'GloRilla', 'Larry June', 'Lil Wayne']",
     "followers": "99",
     "profile_picture_url": "https://cdn3.whatculture.com/images/2018/09/63e3789b4ab13abd-600x338.jpg"
+  },
+  {
+    "username": "bebebebe",
+    "email": "bebebebe@gmail.com",
+    "password": "bebebebe12345",
+    "spotify_id": "bebebebes",
+    "top_songs": "['Search & Rescue', 'Low Down', 'Blackout', 'Honey Bun', 'This Summer']",
+    "top_artists":"['Drake', 'Lil Baby', 'Joyner Lucas', 'Quavo', 'DDG']",
+    "followers": "31",
+    "profile_picture_url": "https://static.wikia.nocookie.net/ba0628fe-3bc1-42c3-9c0c-aa91ba24f03c/scale-to-width/3701"
   }
 ]
