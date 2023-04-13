@@ -54,7 +54,8 @@ User.init(
         },
         profile_picture_url: {
             type: DataTypes.TEXT,
-            allowNull: true
+            allowNull: true,
+            defaultValue: 'https://media.istockphoto.com/id/486407890/vector/recordplayericon.jpg?s=612x612&w=0&k=20&c=lRN9K0UYOZv8_gKAl7FyjMqcDRig9AVWIsMo9jBXpx8='
         },
         // this value will only be present if the user has given us permissions and logged in to their spotify 
         // accessToken: {

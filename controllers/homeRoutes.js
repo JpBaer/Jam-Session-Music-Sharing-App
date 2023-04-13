@@ -156,7 +156,8 @@ router.get('/callback', async (req, res) => {
             //Save relavent data from this fetch
             var spotify_id = response.data.id;
             var followers = response.data.followers.total;
-            var profile_picture_url = response.data.images[0].url;
+            if(response.data.images[0].url){
+            var profile_picture_url = response.data.images[0].url;}
             console.log(spotify_id);
             console.log(followers);
 
@@ -187,7 +188,7 @@ router.get('/callback', async (req, res) => {
 
               //response is playlist data  
               }).then(response => {
-                
+                //console.log(response.data)
                 //Set up a variable to hold parsed data
                 var parsedPlaylistData = [];
                 var user_id = req.session.user_id;
@@ -235,7 +236,7 @@ router.get('/callback', async (req, res) => {
                   //create id variable to be used in the user update
                   
                   console.log(user_id)
-
+                  if(profile_picture_url){
                   var newUserData = {
                     spotify_id: spotify_id,
                     followers: followers,
@@ -244,6 +245,15 @@ router.get('/callback', async (req, res) => {
                     profile_picture_url: profile_picture_url,
                   
                   };
+                }
+                else{
+                  var newUserData = {
+                    spotify_id: spotify_id,
+                    followers: followers,
+                    top_artists: topArtistsString,
+                    top_songs: topTracksString,
+                  };
+                }
 
                   
                     const updatedUser = () => {User.update(newUserData, {
