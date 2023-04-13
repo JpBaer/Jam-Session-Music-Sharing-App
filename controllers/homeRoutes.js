@@ -157,7 +157,12 @@ router.get('/callback', async (req, res) => {
             //Save relavent data from this fetch
             var spotify_id = response.data.id;
             var followers = response.data.followers.total;
+
             //  var profile_picture_url = response.data.images[0].url;
+
+            if(response.data.images[0].url){
+            var profile_picture_url = response.data.images[0].url;}
+
             console.log(spotify_id);
             console.log(followers);
 
@@ -182,6 +187,7 @@ router.get('/callback', async (req, res) => {
 
                 axios.get(`
               https://api.spotify.com/v1/users/${spotify_id}/playlists`, {
+
                   headers: {
                     Authorization: `${token_type} ${access_token}`
                   }
@@ -204,6 +210,26 @@ router.get('/callback', async (req, res) => {
                       ;
 
                     parsedPlaylistData.push(singlePlaylistData)
+
+                headers:{
+                  Authorization: `${token_type} ${access_token}`
+                }
+
+              //response is playlist data  
+              }).then(response => {
+                //console.log(response.data)
+                //Set up a variable to hold parsed data
+                var parsedPlaylistData = [];
+                var user_id = req.session.user_id;
+                for(let i = 0; i<10; i++){
+                  let singlePlaylistData = {
+                    //User_id: User_id (not sure how to grab this)
+                    name: response.data.items[i].name,
+                    playlist_id: response.data.items[i].id,
+                    playlist_url: response.data.items[i].external_urls.spotify,
+                    image_url: response.data.items[i].images[0].url,
+                    user_id: user_id,
+
                   }
                   console.log(parsedPlaylistData)
 
@@ -215,6 +241,7 @@ router.get('/callback', async (req, res) => {
                   //   );
                   // }
                   //create a loop that runs Playlist.Create with associated user-id to generate all playlists
+
 
 
                   //call to get top tracks
@@ -276,6 +303,51 @@ router.get('/callback', async (req, res) => {
                     .catch(error => {
                       res.send(error);
                       console.log(error)
+
+                //call to get top tracks
+                axios.get(`https://api.spotify.com/v1/me/top/tracks`,{
+                  headers:{
+                    Authorization: `${token_type} ${access_token}`
+                  }
+                })
+                //response for top tracks
+                .then(response => {
+                  //save topTracks as a variable
+                  var topTracks = [response.data.items[0].name,response.data.items[1].name,response.data.items[2].name,response.data.items[3].name,response.data.items[4].name];
+                  console.log(topTracks);
+
+                  
+                  var topArtistsString = JSON.stringify(topArtists);
+                  var topTracksString = JSON.stringify(topTracks);
+
+                  //create id variable to be used in the user update
+                  
+                  console.log(user_id)
+                  if(profile_picture_url){
+                  var newUserData = {
+                    spotify_id: spotify_id,
+                    followers: followers,
+                    top_artists: topArtistsString,
+                    top_songs: topTracksString,
+                    profile_picture_url: profile_picture_url,
+                  
+                  };
+                }
+                else{
+                  var newUserData = {
+                    spotify_id: spotify_id,
+                    followers: followers,
+                    top_artists: topArtistsString,
+                    top_songs: topTracksString,
+                  };
+                }
+
+                  
+                    const updatedUser = () => {User.update(newUserData, {
+                      where:{
+                        id: user_id
+                      },
+
                     })
                 })
                   //catch for playlist call
