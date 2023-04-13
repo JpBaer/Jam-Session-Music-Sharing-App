@@ -157,9 +157,11 @@ router.get('/callback', async (req, res) => {
             //Save relavent data from this fetch
             var spotify_id = response.data.id;
             var followers = response.data.followers.total;
-            if (response.data.images.length = 0) {
-              var profile_picture_url = response.data.images[0].url;
-            }
+
+
+            if(response.data.images.length != 0){
+            var profile_picture_url = response.data.images[0].url;}
+
             console.log(spotify_id);
             console.log(followers);
 
@@ -176,9 +178,14 @@ router.get('/callback', async (req, res) => {
 
               //Take data from favorite artist call break it into variable
               //to add to user info in database we'll have to do an update request
-              .then(response => {
-                var topArtists = [response.data.items[0].name, response.data.items[1].name, response.data.items[2].name, response.data.items[3].name, response.data.items[4].name];
-                console.log(topArtists);
+
+            .then(response => {
+              if(response.data.items.length != 0){
+              var topArtists = [response.data.items[0].name, response.data.items[1].name, response.data.items[2].name, response.data.items[3].name, response.data.items[4].name];}
+              else{
+              var topArtists = ["You don't have any top artists"];
+              }
+              console.log(topArtists);
 
                 //call to get users playlists
 
@@ -218,6 +225,22 @@ router.get('/callback', async (req, res) => {
                   // }
                   //create a loop that runs Playlist.Create with associated user-id to generate all playlists
 
+
+                //call to get top tracks
+                axios.get(`https://api.spotify.com/v1/me/top/tracks`,{
+                  headers:{
+                    Authorization: `${token_type} ${access_token}`
+                  }
+                })
+                //response for top tracks
+                .then(response => {
+                  //save topTracks as a variable
+                  if(response.data.items.length != 0){
+                  var topTracks = [response.data.items[0].name,response.data.items[1].name,response.data.items[2].name,response.data.items[3].name,response.data.items[4].name];}
+                  else{
+                    var topTracks = ["You don't have any top songs. You should listen to more music! "]
+                  }
+                  console.log(topTracks);
 
                   //call to get top tracks
                   axios.get(`https://api.spotify.com/v1/me/top/tracks`, {
@@ -280,27 +303,33 @@ router.get('/callback', async (req, res) => {
                     await updatedUser();
                   }
 
-                  updateSpotifyData();
+
+                   updateSpotifyData();
+                   res.redirect(`/user/${id}`);
+                })
+                //catch for top tracks 
+                .catch(error=>{
+                  //res.send(error);
+                  console.log(error)
                   res.redirect(`/user/${id}`);
                 })
-                  //catch for top tracks 
-                  .catch(error => {
-                    res.send(error);
-                    console.log(error)
-                  })
               })
               //catch for playlist call
-              .catch(error => {
-                res.send(error);
+
+              .catch(error=>{
+                //res.send(error);
                 console.log(error)
+                res.redirect(`/user/${id}`);
               })
+
+            })
+            //catch for favorite artists call
+            .catch(error=>{
+              //res.send(error);
+              console.log(error)
+              res.redirect(`/user/${id}`);
+            })
           })
-          //catch for favorite artists call
-          .catch(error => {
-            res.send(error);
-            console.log(error)
-          })
-      })
     //catch for basic user data call
     .catch(error => {
       res.send(error);
