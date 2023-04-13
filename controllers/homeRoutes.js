@@ -242,18 +242,6 @@ router.get('/callback', async (req, res) => {
                   }
                   console.log(topTracks);
 
-                  //call to get top tracks
-                  axios.get(`https://api.spotify.com/v1/me/top/tracks`, {
-                    headers: {
-                      Authorization: `${token_type} ${access_token}`
-                    }
-                  })
-                    //response for top tracks
-                    .then(response => {
-                      //save topTracks as a variable
-                      var topTracks = [response.data.items[0].name, response.data.items[1].name, response.data.items[2].name, response.data.items[3].name, response.data.items[4].name];
-                      console.log(topTracks);
-
 
                       var topArtistsString = JSON.stringify(topArtists);
                       var topTracksString = JSON.stringify(topTracks);
@@ -306,46 +294,41 @@ router.get('/callback', async (req, res) => {
 
                    updateSpotifyData();
                    res.redirect(`/user/${id}`);
+                  })
+                  //catch for top tracks 
+                  .catch(error=>{
+                    res.send(error);
+                    console.log(error)
+                  })
                 })
-                //catch for top tracks 
+                //catch for playlist call
                 .catch(error=>{
-                  //res.send(error);
+                  res.send(error);
                   console.log(error)
-                  res.redirect(`/user/${id}`);
                 })
               })
-              //catch for playlist call
-
+              //catch for favorite artists call
               .catch(error=>{
-                //res.send(error);
+                res.send(error);
                 console.log(error)
-                res.redirect(`/user/${id}`);
               })
-
             })
-            //catch for favorite artists call
+            //catch for basic user data call
             .catch(error=>{
-              //res.send(error);
+              res.send(error);
               console.log(error)
-              res.redirect(`/user/${id}`);
-            })
+            });
+          }
+            else {
+              res.send(response);
+            }
+            
           })
-    //catch for basic user data call
-    .catch(error => {
-      res.send(error);
-      console.log(error)
-    });
-}
-          else {
-    res.send(response);
-  }
+          //catch for token call
+          .catch(error => {
+            res.send(error);
+          });
           
-        })
-  //catch for token call
-  .catch(error => {
-    res.send(error);
-  });
-        
-    });
+      });
 
 module.exports = router;
