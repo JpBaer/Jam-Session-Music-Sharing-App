@@ -12,8 +12,9 @@
 </head>
 
 <body>
-	<div class="container">
+    <div class="container">
         <div class="logo">
+
 		<h1>Jam Session</h1></div>
 		<p id="user-welcome">Welcome, {{username}}!</p>
         {{#if logged_in}}
@@ -22,11 +23,12 @@
 		<button class = "logout-btn"id="logout">Log Out</button>
 	</div>
 
-    {{!--  --}}
+
+    {{!-- --}}
     {{#each playlists as |playlist|}}
     {{> playlist-grid-item}}
     {{/each}}
-	
+
 </body>
 
 <script src="/logout.js"></script>
