@@ -201,7 +201,15 @@ router.get('/callback', async (req, res) => {
                   //Set up a variable to hold parsed data
                   var parsedPlaylistData = [];
                   var user_id = req.session.user_id;
-                  for (let i = 0; i < 10; i++) {
+                  var len;
+                  if(response.data.items.length < 10){
+                    len = response.data.items.length;
+                  }
+                  else{
+                    len = 10;
+                  }
+
+                  for (let i = 0; i < len; i++) {
                     let singlePlaylistData = {
                       //User_id: User_id (not sure how to grab this)
                       name: response.data.items[i].name,
