@@ -3,6 +3,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/homepagestyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,23 +17,52 @@
 <body>
     <div class="container">
         <div class="logo">
-
-		<h1>Jam Session</h1></div>
-		<p id="user-welcome">Welcome, {{username}}!</p>
+            <h1>Jam Session</h1>
+        </div>
+        <p id="user-welcome">Welcome, <span class="username">{{username}}</span>!</p>
         {{#if logged_in}}
-       <a href = "/user/{{id}}"> <button class = "logout-btn">Profile</button></a>
+        <a href="/user/{{id}}"><button class="profile-btn">Profile</button></a>
         {{/if}}
-		<button class = "logout-btn"id="logout">Log Out</button>
-	</div>
+        <a href="/intro"><button class="logout-btn" id="logout">Log Out</button></a>
+    </div>
 
+    <div class="containerAside">
+        <aside>
+            <h2><span class="sep-font">Today's Song Picks</span></h2>
+            <hr>
+            {{#each top_songs as |top_song|}}
+            <p>{{top_song}}</p>
+            {{/each}}
+            <hr>
+            <h2><span class="sep-font">Today's Artist Picks</span></h2>
+            {{#each top_artists as |top_artist|}}
+            <p>{{top_artist}}</p>
+            {{/each}}
+        </aside>
 
-    {{!-- --}}
-    {{#each playlists as |playlist|}}
-    {{> playlist-grid-item}}
-    {{/each}}
-
-</body>
-
-<script src="/logout.js"></script>
-<script src="/profile.js"></script>
-</html>
+        <div class="playlist-grid">
+            {{#each playlists as |playlist|}}
+            <div class="playlist-grid-item">
+                <img src="{{playlist.image_url}}" alt="{{playlist.name}}">
+                <div class="playlist-info">
+                    <h3>{{playlist.name}}</h3>
+                    <p>{{playlist.description}}</p>
+                    <div class="playlist-stats">
+                        <div class="likes">
+                            <button class="like-btn" data-playlist-id="{{playlist.id}}">
+                                <i class="fa-sharp fa-regular fa-heart"></i>
+                            </button>
+                            <span class="num-likes">{{playlist.likes}}</span>
+                        </div>
+                        <div class="comments">
+                            <button class="comment-btn" data-playlist-id="{{playlist.id}}">
+                                <i class="fa-sharp fa-regular fa-comment"></i>
+                            </button>
+                            <span class="num-comments">{{playlist.comments}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
