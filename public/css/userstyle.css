@@ -17,12 +17,12 @@ body {
 }
 
 .logo {
-    color: #c81ce3c4;
     font-family: 'Staatliches', cursive;
     font-size: 50px;
     padding-left: 50px;
-    opacity: 70%;
     text-shadow: 1px 1px #0d050f;
+    color: #c81ce3;
+    opacity: 70%;
 }
 
 #user-welcome {
@@ -38,17 +38,17 @@ body {
     font-size: 30px;
 }
 
+
 .logout-btn {
-    position: relative;
-    height: 60px;
-    width: 120px;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    margin-right: 35px;
+    font-family: 'Monda', sans-serif;
+    background-color: #243a6ca0;
+    font-size: 20px;
+    border: none;
+    color: #5fe4fbc6;
+    margin-right: 50px;
 }
 
-button:active {
+.logout-btn:active {
     background: #7484e7;
     -webkit-box-shadow: inset 0px 0px 5px #b66aeb;
     -moz-box-shadow: inset 0px 0px 5px #b66aeb;
@@ -57,7 +57,7 @@ button:active {
     color: azure;
 }
 
-button:hover {
+.logout-btn:hover {
     background-color: #5fe4fbda;
 }
 
@@ -125,7 +125,7 @@ aside {
     max-width: 20vw;
     color: #fff;
     margin: 5% 60px 0 30px;
-    height: 1000px;
+    height: 1100px;
     margin-top: 0%;
 }
 
@@ -139,4 +139,33 @@ aside {
     margin-bottom: 15px;
     border-radius: 50%;
     height: 30px;
+}
+
+.playlist-stats {
+    display: flex;
+    justify-content: space-around;
+}
+
+.likes,
+.comments {
+    display: flex;
+    align-items: center;
+}
+
+.likes button,
+.comments button {
+    background-color: #c81ce374;
+    border: none;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    justify-content: center;
+    align-items: center;
+}
+
+i {
+    height: 20px;
+    width: 20px;
+    color: rgba(95, 228, 251, 0.971)6;
+    padding-top: 5px;
 }

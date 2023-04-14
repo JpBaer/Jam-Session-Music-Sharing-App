@@ -95,7 +95,7 @@ router.get('/login', (req, res) => {
 //********************************** */
 const clientId = '6b9d8ca2f7a34e56b1aef2f870ddc9b5';
 const clientSecret = 'd759d5c054d74ab1ad40ee3a3db52010'
-const redirectUri = 'https://calm-tor-47120.herokuapp.com/callback';
+const redirectUri = 'http://localhost:3001/callback';
 //scopes are the what data we are asking the user to allow us access to
 // additional scopes: user-top-read user-library-read playlist-read-private playlist-read-collaborative
 const scopes = 'user-read-private user-read-email user-top-read user-library-read playlist-read-collaborative';
@@ -159,8 +159,9 @@ router.get('/callback', async (req, res) => {
             var followers = response.data.followers.total;
 
 
-            if(response.data.images.length != 0){
-            var profile_picture_url = response.data.images[0].url;}
+            if (response.data.images.length != 0) {
+              var profile_picture_url = response.data.images[0].url;
+            }
 
             console.log(spotify_id);
             console.log(followers);
@@ -179,13 +180,14 @@ router.get('/callback', async (req, res) => {
               //Take data from favorite artist call break it into variable
               //to add to user info in database we'll have to do an update request
 
-            .then(response => {
-              if(response.data.items.length != 0){
-              var topArtists = [response.data.items[0].name, response.data.items[1].name, response.data.items[2].name, response.data.items[3].name, response.data.items[4].name];}
-              else{
-              var topArtists = ["You don't have any top artists"];
-              }
-              console.log(topArtists);
+              .then(response => {
+                if (response.data.items.length != 0) {
+                  var topArtists = [response.data.items[0].name, response.data.items[1].name, response.data.items[2].name, response.data.items[3].name, response.data.items[4].name];
+                }
+                else {
+                  var topArtists = ["You don't have any top artists"];
+                }
+                console.log(topArtists);
 
                 //call to get users playlists
 
@@ -204,13 +206,13 @@ router.get('/callback', async (req, res) => {
                   console.log(response.data);
 
                   var len;
-                  if(response.data.items.length < 10){
+                  if (response.data.items.length < 12) {
                     len = response.data.items.length;
                   }
-                  else{
-                    len=10;
+                  else {
+                    len = 12;
                   }
-                  
+
                   for (let i = 0; i < len; i++) {
                     let singlePlaylistData = {
                       //User_id: User_id (not sure how to grab this)
@@ -227,7 +229,7 @@ router.get('/callback', async (req, res) => {
                   console.log(parsedPlaylistData)
 
 
-                  const createNewPlaylists = () => Playlist.bulkCreate(parsedPlaylistData, {ignoreDuplicates: true});
+                  const createNewPlaylists = () => Playlist.bulkCreate(parsedPlaylistData, { ignoreDuplicates: true });
                   // for(let i=0;i<parsedPlaylistData.length;i++){
                   //   const newPlaylist = Playlist.create(
                   //     parsedPlaylistData[i]
@@ -236,21 +238,22 @@ router.get('/callback', async (req, res) => {
                   //create a loop that runs Playlist.Create with associated user-id to generate all playlists
 
 
-                //call to get top tracks
-                axios.get(`https://api.spotify.com/v1/me/top/tracks`,{
-                  headers:{
-                    Authorization: `${token_type} ${access_token}`
-                  }
-                })
-                //response for top tracks
-                .then(response => {
-                  //save topTracks as a variable
-                  if(response.data.items.length != 0){
-                  var topTracks = [response.data.items[0].name,response.data.items[1].name,response.data.items[2].name,response.data.items[3].name,response.data.items[4].name];}
-                  else{
-                    var topTracks = ["You don't have any top songs. You should listen to more music! "]
-                  }
-                  console.log(topTracks);
+                  //call to get top tracks
+                  axios.get(`https://api.spotify.com/v1/me/top/tracks`, {
+                    headers: {
+                      Authorization: `${token_type} ${access_token}`
+                    }
+                  })
+                    //response for top tracks
+                    .then(response => {
+                      //save topTracks as a variable
+                      if (response.data.items.length != 0) {
+                        var topTracks = [response.data.items[0].name, response.data.items[1].name, response.data.items[2].name, response.data.items[3].name, response.data.items[4].name];
+                      }
+                      else {
+                        var topTracks = ["You don't have any top songs. You should listen to more music! "]
+                      }
+                      console.log(topTracks);
 
 
                       var topArtistsString = JSON.stringify(topArtists);
@@ -271,74 +274,74 @@ router.get('/callback', async (req, res) => {
                       }
                       else {
                         var newUserData = {
-                        spotify_id: spotify_id,
+                          spotify_id: spotify_id,
                           followers: followers,
-                            top_artists: topArtistsString,
-                              top_songs: topTracksString,
-                  };
-                    }
+                          top_artists: topArtistsString,
+                          top_songs: topTracksString,
+                        };
+                      }
 
-                  
-                    const updatedUser = () => {
-                    User.update(newUserData, {
-                      where: {
-                        id: user_id
-                      },
+
+                      const updatedUser = () => {
+                        User.update(newUserData, {
+                          where: {
+                            id: user_id
+                          },
+                        })
+                      };
+                      // if (!updatedUser) {
+                      //   res.status(404).json({message: 'No user with that id found.'})
+                      //   return;
+                      // }
+                      // res.status(200).json(updatedUser)
+
+                      // Run user.update to add tracks to user model
+
+
+                      // res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
+                      const updateSpotifyData = async () => {
+                        await createNewPlaylists();
+                        await updatedUser();
+                      }
+
+
+                      updateSpotifyData();
+                      res.redirect(`/user/${id}`);
                     })
-                  };
-                  // if (!updatedUser) {
-                  //   res.status(404).json({message: 'No user with that id found.'})
-                  //   return;
-                  // }
-                  // res.status(200).json(updatedUser)
-
-                  // Run user.update to add tracks to user model
-
-
-                  // res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
-                  const updateSpotifyData = async () => {
-                    await createNewPlaylists();
-                    await updatedUser();
-                  }
-
-
-                   updateSpotifyData();
-                   res.redirect(`/user/${id}`);
-                  })
-                  //catch for top tracks 
-                  .catch(error=>{
+                    //catch for top tracks 
+                    .catch(error => {
+                      res.send(error);
+                      console.log(error)
+                    })
+                })
+                  //catch for playlist call
+                  .catch(error => {
                     res.send(error);
                     console.log(error)
                   })
-                })
-                //catch for playlist call
-                .catch(error=>{
-                  res.send(error);
-                  console.log(error)
-                })
               })
               //catch for favorite artists call
-              .catch(error=>{
+              .catch(error => {
                 res.send(error);
                 console.log(error)
               })
-            })
-            //catch for basic user data call
-            .catch(error=>{
-              res.send(error);
-              console.log(error)
-            });
-          }
-            else {
-              res.send(response);
-            }
-            
           })
-          //catch for token call
+          //catch for basic user data call
           .catch(error => {
             res.send(error);
+            console.log(error)
           });
-          
-      });
+      }
+      else {
+        res.send(response);
+      }
+
+    })
+    //catch for token call
+    .catch(error => {
+      res.send(error);
+    });
+
+});
 
 module.exports = router;
