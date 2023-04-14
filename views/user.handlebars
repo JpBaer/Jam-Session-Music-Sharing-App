@@ -1,44 +1,51 @@
 <link rel="stylesheet" href="/css/userstyle.css">
+
 <body>
 
 
 
-<div class="container">
+    <div class="header">
         <div class="logo">
-		<h1>Jam Session</h1></div>
-		<p id="user-welcome">Welcome, {{username}}!</p>
-		<button class = "logout-btn"id="logout">Log Out</button>
-	</div>
+            <h1 id="header-item">Jam Session</h1>
+        </div>
+        <div id="header-item">
+            <p id="user-welcome">Welcome, <span class="username">{{username}}</span>!</p>
+        </div>
+        <div id="header-item">
+            <button class="logout-btn" id="logout">Log Out</button>
+        </div>
+    </div>
 
 
-<div class = "container">
+    <div class="containerAside">
+        <aside>
+            <img id="profile-picture" src="{{profile_picture_url}}">
+            <a href="/spotifylogin"><button class="btn btn-primary" id="spotify-button" type="submit">Login To
+                    Spotify</button></a><br>
+            <h3>{{spotify_id}}</h3>
+            <h4>{{followers}} followers on Spotify</h4>
+            <h2><span class="sep-font">Favorite Songs</span></h2>
+            <hr>
+            {{#each top_songs as |top_song|}}
+            <p>{{top_song}}</p>
+            {{/each}}
+            <hr>
+            <h2><span class="sep-font">Favorite Artists</span></h2>
+            {{#each top_artists as |top_artist|}}
+            <p>{{top_artist}}</p>
+            {{/each}}
+        </aside>
 
-<aside>
-   
-    <img id = "profile-picture" src="{{profile_picture_url}}">
-     <a href="/spotifylogin"><button class="btn btn-primary" id = "spotify-button" type="submit">Login To Spotify</button></a>
-    <h3>{{spotify_id}}</h3>
-    <h4>{{followers}} followers on Spotify</h4>
-    <h2>Favorite Songs</h2>
-    <hr>
-    {{#each top_songs as |top_song|}}
-    <p>{{top_song}}</p>
-    {{/each}}
-    <hr>
-    <h2>Favorite Artists</h2>
-    {{#each top_artists as |top_artist|}}
-    <p>{{top_artist}}</p>
-    {{/each}}
-</aside>    
+        <div class="playlist-grid">
+            {{#each playlists as |playlist|}}
+            {{> playlist-grid-item}}
+            {{/each}}
+        </div>
 
-
-{{#each playlists as |playlist|}}
-{{> playlist-grid-item}}
-{{/each}}
-
-</div>
+    </div>
 
 </body>
 
 <script src="/logout.js"></script>
+
 </html>
