@@ -95,7 +95,7 @@ router.get('/login', (req, res) => {
 //********************************** */
 const clientId = '6b9d8ca2f7a34e56b1aef2f870ddc9b5';
 const clientSecret = 'd759d5c054d74ab1ad40ee3a3db52010'
-const redirectUri = 'http://localhost:3001/callback';
+const redirectUri = 'https://calm-tor-47120.herokuapp.com/callback';
 //scopes are the what data we are asking the user to allow us access to
 // additional scopes: user-top-read user-library-read playlist-read-private playlist-read-collaborative
 const scopes = 'user-read-private user-read-email user-top-read user-library-read playlist-read-collaborative';
@@ -201,7 +201,17 @@ router.get('/callback', async (req, res) => {
                   //Set up a variable to hold parsed data
                   var parsedPlaylistData = [];
                   var user_id = req.session.user_id;
-                  for (let i = 0; i < 10; i++) {
+                  console.log(response.data);
+
+                  var len;
+                  if(response.data.items.length < 10){
+                    len = response.data.items.length;
+                  }
+                  else{
+                    len=10;
+                  }
+                  
+                  for (let i = 0; i < len; i++) {
                     let singlePlaylistData = {
                       //User_id: User_id (not sure how to grab this)
                       name: response.data.items[i].name,
@@ -217,7 +227,7 @@ router.get('/callback', async (req, res) => {
                   console.log(parsedPlaylistData)
 
 
-                  const createNewPlaylists = () => Playlist.bulkCreate(parsedPlaylistData);
+                  const createNewPlaylists = () => Playlist.bulkCreate(parsedPlaylistData, {ignoreDuplicates: true});
                   // for(let i=0;i<parsedPlaylistData.length;i++){
                   //   const newPlaylist = Playlist.create(
                   //     parsedPlaylistData[i]
