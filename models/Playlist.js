@@ -5,10 +5,15 @@ class Playlist extends Model {}
 
 Playlist.init(
     {
-        id: {
-            type: DataTypes.INTEGER,
+        // id: {
+        //     type: DataTypes.INTEGER,
+        //     primaryKey: true,
+        //     autoIncrement: true,
+        //     allowNull: false,
+        // },
+        playlist_id: {
+            type: DataTypes.STRING,
             primaryKey: true,
-            autoIncrement: true,
             allowNull: false,
         },
         name: {
@@ -19,10 +24,6 @@ Playlist.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: "0",
-        },
-        playlist_id: {
-            type: DataTypes.STRING,
-            allowNull: false,
         },
         playlist_url: {
             type: DataTypes.STRING,
