@@ -1,5 +1,42 @@
+<link rel="stylesheet" href="/css/userstyle.css">
 <body>
-<a href="/spotifylogin"><button class="btn btn-primary" id = "spotify-button" type="submit">Login To Spotify</button></a>
+
+
+
+<div class="container">
+        <div class="logo">
+		<h1>Jam Session</h1></div>
+		<p id="user-welcome">Welcome, {{username}}!</p>
+		<button class = "logout-btn"id="logout">Log Out</button>
+	</div>
+
+
+<div class = "container">
+
+<aside>
+   
+    <img id = "profile-picture" src="{{profile_picture_url}}">
+     <a href="/spotifylogin"><button class="btn btn-primary" id = "spotify-button" type="submit">Login To Spotify</button></a>
+    <h3>{{spotify_id}}</h3>
+    <h4>{{followers}} followers on Spotify</h4>
+    <h2>Favorite Songs</h2>
+    <hr>
+    {{#each top_songs as |top_song|}}
+    <p>{{top_song}}</p>
+    {{/each}}
+    <hr>
+    <h2>Favorite Artists</h2>
+    {{#each top_artists as |top_artist|}}
+    <p>{{top_artist}}</p>
+    {{/each}}
+</aside>    
+
+
+{{#each playlists as |playlist|}}
+{{> playlist-grid-item}}
+{{/each}}
+
+</div>
 
 </body>
 

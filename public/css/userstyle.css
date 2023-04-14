@@ -1,8 +1,62 @@
 body {
-    background-image: linear-gradient(to right, #43245c, #b66aeb #7484e7 , #24396c);
-   
-   }
+    font-family: 'Monda', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image:linear-gradient(to left, #43245c, #b66aeb , #7484e7 , #24396c);
+    
+}
 
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.logo {
+    margin: 0;
+    color: #c81ce3;
+    font-family: 'Staatliches', cursive;
+    font-size: 20px;
+    padding-left: 50px;
+    text-shadow: 2px 2px #43245c;
+}
+
+#user-welcome {
+    margin: 0;
+    font-size: 20px;
+    color: #c81ce3;
+    font-family: 'Monda', sans-serif;
+    text-shadow: 1px 1px #43245c;
+}
+
+.logout-btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Monda', sans-serif;
+}
+
+#logout-btn:hover {
+    background-color: #666;
+}
+
+aside{
+    padding: 10px 20px;
+    background-color: #a03eb96e;
+    max-width: 20vw;
+    color: #fff;
+    
+}
+
+#profile-picture{
+    border-radius: 200px;
+    max-width: 15vw;
+}
      /* primary font
 .primary2 {
     font-family: 'Staatliches', cursive;
