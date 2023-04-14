@@ -16,6 +16,9 @@
         <div class="logo">
 		<h1>Jam Session</h1></div>
 		<p id="user-welcome">Welcome, {{username}}!</p>
+        {{#if logged_in}}
+       <a href = "/user/{{id}}"> <button class = "logout-btn">Profile</button></a>
+        {{/if}}
 		<button class = "logout-btn"id="logout">Log Out</button>
 	</div>
 
@@ -27,4 +30,5 @@
 </body>
 
 <script src="/logout.js"></script>
+<script src="/profile.js"></script>
 </html>
