@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    line-height: 20px;
 }
 
 .logo {
@@ -143,4 +143,8 @@ i {
     width: 20px;
     color: rgba(95, 228, 251, 0.971)6;
     padding-top: 5px;
+}
+
+.num-likes {
+    padding-left: 15px;
 }

@@ -6,96 +6,95 @@ h1 {
     margin-top: 3%;
     text-shadow: 3px 2px #0d050f;
     margin-bottom: 3%;
-    }
-    
-    h4 {
-    
-        font-family: 'Staatliches';
-        font-size: 40px;
-        color: #c81ce3;
-        opacity: 60%;
-        margin-top: 10%;
-    }
-    
-    
-    .full-screen-video-container {
-       
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-    }
-    
-    .full-screen-video-container video {
-        z-index: -1;
-      position: absolute;
-      height: auto;
-      width: auto;
-      min-width: 100%;
-      min-height: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    
-    .btn {
-        position: relative;
-        height: 60px;
-        width: 140px;
-        margin-left: 15%;
-        justify-content: space-around;
-        align-items: center;
-        text-align: center;
-        transform-style: preserve-3d;
-        transition: transform 400ms ease-in-out;
-        transform: translateZ(-75px);
-        
-    }
-    
-    button:active {
-        background: #7484e7;
-        -webkit-box-shadow: inset 0px 0px 5px #b66aeb;
-           -moz-box-shadow: inset 0px 0px 5px #b66aeb;
-                box-shadow: inset 0px 0px 5px #b66aeb;
-         outline: none;
-         color: azure;
-      }
-    
-    .btn:hover {
-        transform: rotateX(-90deg) translateY(25px);
-        cursor: pointer;
-    }
-    
-    .btn-1 {
-      margin-bottom: 35px;
-     
-    }
-    
-    
-    .side {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Monda', sans-serif;
-       backface-visibility: hidden;
-    
-    }
-    
-    .default-side {
-        background-color:  #c81ce3;
-        opacity: 50%;
-        border: 1px solid #43245c;
-        transform: translateZ(25px);
-        font-size: 18px;
-    }
-    
-    .hover-side {
-        background-color: #5fe4fb;
-        opacity: 50%;
-        border: 1px solid #24396c;
-        transform: rotateX(90deg) translateZ(25px);
-        font-size: 22px;
+}
 
-   
+
+h4 {
+
+    font-family: 'Staatliches';
+    font-size: 40px;
+    color: #c81ce3;
+    opacity: 60%;
+    margin-top: 10%;
+}
+
+
+.full-screen-video-container {
+
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.full-screen-video-container video {
+    z-index: -1;
+    position: absolute;
+    height: auto;
+    width: auto;
+    min-width: 100%;
+    min-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn {
+    position: relative;
+    height: 60px;
+    width: 140px;
+    margin-left: 15%;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    transform-style: preserve-3d;
+    transition: transform 400ms ease-in-out;
+    transform: translateZ(-75px);
+
+}
+
+button:active {
+    background: #7484e7;
+    -webkit-box-shadow: inset 0px 0px 5px #b66aeb;
+    -moz-box-shadow: inset 0px 0px 5px #b66aeb;
+    box-shadow: inset 0px 0px 5px #b66aeb;
+    outline: none;
+    color: azure;
+}
+
+.btn:hover {
+    transform: rotateX(-90deg) translateY(25px);
+    cursor: pointer;
+}
+
+.btn-1 {
+    margin-bottom: 35px;
+
+}
+
+
+.side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Monda', sans-serif;
+    backface-visibility: hidden;
+
+}
+
+.default-side {
+    background-color: #c81ce3;
+    opacity: 50%;
+    border: 1px solid #43245c;
+    transform: translateZ(25px);
+    font-size: 18px;
+}
+
+.hover-side {
+    background-color: #5fe4fb;
+    opacity: 50%;
+    border: 1px solid #24396c;
+    transform: rotateX(90deg) translateZ(25px);
+    font-size: 22px;
