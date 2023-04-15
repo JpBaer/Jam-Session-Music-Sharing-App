@@ -48,8 +48,8 @@
                     <p>{{playlist.description}}</p>
                     <div class="playlist-stats">
                         <div class="likes">
-                            <button class="like-btn" data-playlist-id="{{playlist.id}}">
-                                <i class="fa-sharp fa-regular fa-heart"></i>
+                             <button class="like-btn" data-playlist-id="{{playlist.playlist_id}}">
+                                <i class="fa-sharp fa-regular fa-heart" data-playlist-id="{{playlist.playlist_id}}"></i>
                             </button>
                             <span class="num-likes">{{playlist.likes}}</span>
                         </div>
@@ -70,5 +70,6 @@
 </body>
 
 <script src="/logout.js"></script>
+<script src="/likebutton.js"></script>
 
 </html>
