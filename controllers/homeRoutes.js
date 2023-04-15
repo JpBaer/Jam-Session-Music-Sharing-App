@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
       res.redirect('/home')
     }
     else {
-      res.render('intropage',
+      res.render('/intro',
         { logged_in: req.session.logged_in });
     }
   } catch (err) {
