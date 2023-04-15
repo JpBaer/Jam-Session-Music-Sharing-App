@@ -30,13 +30,13 @@
         <aside>
             <h2><span class="sep-font">Today's Song Picks</span></h2>
             <hr>
-            {{#each top_songs as |top_song|}}
-            <p>{{top_song}}</p>
+            {{#each random_Songs.random_Songs as |randomSong|}}
+            <p>{{randomSong}}</p>
             {{/each}}
             <hr>
             <h2><span class="sep-font">Today's Artist Picks</span></h2>
-            {{#each top_artists as |top_artist|}}
-            <p>{{top_artist}}</p>
+            {{#each random_Artists.random_Artists as |randomArtist|}}
+            <p>{{randomArtist}}</p>
             {{/each}}
         </aside>
 
