@@ -23,7 +23,7 @@
         {{#if logged_in}}
         <a href="/user/{{id}}"><button class="profile-btn">Profile</button></a>
         {{/if}}
-        <a href="/intro"><button class="logout-btn" id="logout">Log Out</button></a>
+        <a><button class="logout-btn" id="logout">Log Out</button></a>
     </div>
 
     <div class="containerAside">
@@ -49,14 +49,14 @@
                     <p>{{playlist.description}}</p>
                     <div class="playlist-stats">
                         <div class="likes">
-                            <button class="like-btn" data-playlist-id="{{playlist.id}}">
-                                <i class="fa-sharp fa-regular fa-heart"></i>
+                            <button class="like-btn" data-playlist-id="{{playlist.playlist_id}}">
+                                <i class="fa-sharp fa-regular fa-heart" data-playlist-id="{{playlist.playlist_id}}"></i>
                             </button>
                             <span class="num-likes">{{playlist.likes}}</span>
                         </div>
                         <div class="comments">
-                            <button class="comment-btn" data-playlist-id="{{playlist.id}}">
-                                <i class="fa-sharp fa-regular fa-comment"></i>
+                            <button class="comment-btn" data-playlist-id="{{playlist.playlist_id}}">
+                                <i class="fa-sharp fa-regular fa-comment" data-playlist-id="{{playlist.playlist_id}}"></i>
                             </button>
                             <span class="num-comments">{{playlist.comments}}</span>
                         </div>
@@ -66,3 +66,6 @@
             {{/each}}
         </div>
     </div>
+
+<script src="/logout.js"></script>
+<script src="/likebutton.js"></script>
