@@ -1,62 +1,59 @@
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/loginstyle.css">
-    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Monda&display=swap" rel="stylesheet">
-    <title>Jam Session: Log In/Sign Up</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/loginstyle.css">
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Monda&display=swap" rel="stylesheet">
+  <title>Jam Session: Log In/Sign Up</title>
 </head>
 
-<div class="row">
-  <div class="col-md-6">
+
 <h1>Jam Session</h1>
-  </divc>
+
+
+
+<div class="loginform">
+  <h2>Log In</h2>
+  <form class="form login-form">
+    <div class="form-group">
+      <label for="email-login">Email:</label>
+      <input class="form-input" type="text" id="email-login" />
+    </div>
+    <div class="form-group">
+      <label for="password-login">Password:</label>
+      <input class="form-input" type="password" id="password-login" />
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Log In</button>
+    </div>
+  </form>
 </div>
 
 
-<div class="row" id="loginform">
-  <div class="col-md-6">
-    <h2>Log In</h2>
-
-    <form class="form login-form">
-      <div class="form-group">
-        <label for="email-login">Email:</label>
-        <input class="form-input" type="text" id="email-login" />
-      </div>
-      <div class="form-group">
-        <label for="password-login">Password:</label>
-        <input class="form-input" type="password" id="password-login" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">Log In</button>
-      </div>
-    </form>
-  </div>
-  <div class="col-md-6" id="signupform">
-    <h2 class="signuparea">Sign Up</h2>
-
-    <form class="form signup-form">
-      <div class="form-group">
-        <label for="name-signup">Username:</label>
-        <input class="form-input" type="text" id="name-signup" />
-      </div>
-      <div class="form-group">
-        <label for="email-signup">Email:</label>
-        <input class="form-input" type="text" id="email-signup" />
-      </div>
-      <div class="form-group">
-        <label for="password-signup">Password:</label>
-        <input class="form-input" type="password" id="password-signup" />
-      </div>
-      <div class="form-group">
-       <button class="btn btn-primary" type="submit">Submit</button>
-      </div>
-    </form>
-  </div>
+<div class="signupform">
+  <h2>Sign Up</h2>
+  <form class="form signup-form">
+    <div class="form-group">
+      <label for="name-signup">Username:</label>
+      <input class="form-input" type="text" id="name-signup" />
+    </div>
+    <div class="form-group">
+      <label for="email-signup">Email:</label>
+      <input class="form-input" type="text" id="email-signup" />
+    </div>
+    <div class="form-group">
+      <label for="password-signup">Password:</label>
+      <input class="form-input" type="password" id="password-signup" />
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
 </div>
 
 <script src="/login.js"></script>

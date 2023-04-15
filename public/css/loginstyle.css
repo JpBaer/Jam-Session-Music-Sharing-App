@@ -6,8 +6,8 @@ body {
     font-family: 'Monda', sans-serif;
     margin: 0;
     padding: 0;
-    background-image:linear-gradient(to left, #43245c, #b66aeb , #7484e7 , #24396c);
-    
+    background-image: linear-gradient(to left, #43245c, #b66aeb, #7484e7, #24396c);
+
 }
 
 h1 {
@@ -16,51 +16,51 @@ h1 {
     color: #c81ce3;
     opacity: 70%;
     text-shadow: 3px 2px #0d050f;
-margin-left: 40%;
-    }
+    text-align: center;
+}
 
-    .btn {
-        position: relative;
-        height: 30px;
-        width: 60px;
-        margin-left: 15%;
-        justify-content: space-around;
-        align-items: center;
-        text-align: center;
-        font-family: 'Monda', sans-serif;
-        background-color: #c81ce3;
-        opacity: 70%;
-        margin-top: 10px;
-    }
-    
-    button:active {
-        background: #7484e7;
-        -webkit-box-shadow: inset 0px 0px 5px #b66aeb;
-           -moz-box-shadow: inset 0px 0px 5px #b66aeb;
-                box-shadow: inset 0px 0px 5px #b66aeb;
-         outline: none;
-        
-      }
-    
-   .signuparea {
-    margin-top: 600px;
-   }
+.btn {
+    font-family: 'Monda', sans-serif;
+    background-color: #243a6ca0;
+    font-size: 20px;
+    border: none;
+    color: #5fe4fbc6;
+    margin-top: 5px;
+}
 
-#loginform {
-    margin-left: 40%;
-    background-color: #5fe4fb;
-    opacity: 50%;
+.btn:active {
+    background: #7484e7;
+    outline: none;
+    color: azure;
+}
+
+.lbtn:hover {
+    background-color: #5fe4fbf8;
+    color: azure;
+}
+
+
+.loginform {
+    margin-left: 45%;
+    background-color: #5fe4fb7b;
     height: 200px;
     width: 200px;
+    justify-content: center;
+    text-align: center;
 }
 
-#signupform {
-    margin-left: 0%;
-    margin-bottom: 300px;
-    background-color: #5fe4fb;
-    align-items: center;
+.signupform {
+    margin-top: 900px;
+    margin-bottom: 100px;
+    margin-left: 45%;
+    background-color: #5fe4fb7b;
+    height: 250px;
+    width: 200px;
+    justify-content: center;
+    text-align: center;
 }
 
+label,
 h2 {
-    align-items: center;
+    color: #24396c;
 }
