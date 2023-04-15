@@ -49,7 +49,7 @@ h1 {
     text-align: center;
 }
 
-.signupform {
+#signupform {
     margin-top: 900px;
     margin-bottom: 100px;
     margin-left: 45%;
