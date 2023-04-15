@@ -20,10 +20,13 @@
         <aside>
             <img id="profile-picture" src="{{profile_picture_url}}">
             <a href="/spotifylogin"><button class="btn btn-primary" id="spotify-button" type="submit">Connect to
-                    Spotify</button></a><br>
+                    Spotify</button></a>
             <h3>{{spotify_id}}</h3>
             <h4>{{followers}} followers on Spotify</h4>
-            <h2><span class="sep-font2">Current Favorites: </span><span class="sep-font">Songs</span></h2>
+            <h2><span class="sep-font2">Current Favorites: </span>
+                <br><br>
+                <span class="sep-font">Songs</span>
+            </h2>
             <hr>
             {{#each top_songs as |top_song|}}
             <p>{{top_song}}</p>
@@ -33,6 +36,7 @@
             {{#each top_artists as |top_artist|}}
             <p>{{top_artist}}</p>
             {{/each}}
+
         </aside>
 
         <div class="playlist-grid">

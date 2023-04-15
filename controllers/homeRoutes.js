@@ -36,14 +36,14 @@ router.get('/home', withAuth, async (req, res) => {
 
 
     const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
-   // console.log(playlists);
+    // console.log(playlists);
 
     var id = req.session.user_id;
     const userData = await User.findByPk(id);
 
     const user = userData.get({ plain: true });
 
-//****************************** */
+    //****************************** */
     // Code to get random songs and artists for home page
     //Grab all users
     const randomData = await User.findAll()
@@ -55,24 +55,24 @@ router.get('/home', withAuth, async (req, res) => {
     const randomSongs = [];
     const randomArtists = [];
     //Grab three random songs and artists
-    for(let i = 0; i < 3; i++){
+    for (let i = 0; i < 3; i++) {
       //grab a random user
-     const randomUser = songData[getRandomInt(0,songData.length-1)];
-     console.log(randomUser)
-     //grab a random song and artist and append to array
-    let top_songs = JSON.parse(randomUser.top_songs)
-    let top_artists = JSON.parse(randomUser.top_artists)
-    let randomSong =top_songs[getRandomInt(0,top_songs.length-1)]
-    let randomArtist = top_artists[getRandomInt(0,top_artists.length-1)]
-    randomSongs.push(randomSong);
-    randomArtists.push(randomArtist);
+      const randomUser = songData[getRandomInt(0, songData.length - 1)];
+      console.log(randomUser)
+      //grab a random song and artist and append to array
+      let top_songs = JSON.parse(randomUser.top_songs)
+      let top_artists = JSON.parse(randomUser.top_artists)
+      let randomSong = top_songs[getRandomInt(0, top_songs.length - 1)]
+      let randomArtist = top_artists[getRandomInt(0, top_artists.length - 1)]
+      randomSongs.push(randomSong);
+      randomArtists.push(randomArtist);
     }
-   
-    let random_Songs = {random_Songs: randomSongs};
-    let random_Artists = {random_Artists: randomArtists};
+
+    let random_Songs = { random_Songs: randomSongs };
+    let random_Artists = { random_Artists: randomArtists };
     console.log(random_Songs);
     console.log(random_Artists);
-/*************** */
+    /*************** */
     res.render('homepage', {
       playlists,
       ...user,
