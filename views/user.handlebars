@@ -15,16 +15,19 @@
         <a href="/intro"><button class="logout-btn" id="logout">Log Out</button></a>
     </div>
 
-
-    <div class="containerAside">
+    <div class="side-container">
         <aside>
             <img id="profile-picture" src="{{profile_picture_url}}">
-            <a href="/spotifylogin"><button class="btn btn-primary" id="spotify-button" type="submit">Connect to
-                    Spotify</button></a>
-            <h3>{{spotify_id}}</h3>
+            <a href="/spotifylogin">
+                <div class="spotify-btn">
+                    <button class="side default-side">Connect with Spotify</button>
+                    <button class="side hover-side"> Sync</button>
+                </div>
+            </a>
+            <h3>{{spotify_id}}: </h3>
             <h4>{{followers}} followers on Spotify</h4>
             <h2><span class="sep-font2">Current Favorites: </span>
-                <br><br>
+                <br>
                 <span class="sep-font">Songs</span>
             </h2>
             <hr>
@@ -38,34 +41,36 @@
             {{/each}}
 
         </aside>
+    </div>
 
-        <div class="playlist-grid">
-            {{#each playlists as |playlist|}}
-            <div class="playlist-grid-item">
-                <img src="{{playlist.image_url}}" alt="{{playlist.name}}">
-                <div class="playlist-info">
-                    <h3><a href="{{playlist.playlist_url}}" target="_blank">{{playlist.name}}</a></h3>
-                    <p>{{playlist.description}}</p>
-                    <div class="playlist-stats">
-                        <div class="likes">
-                            <button class="like-btn" data-playlist-id="{{playlist.id}}">
-                                <i class="fa-sharp fa-regular fa-heart"></i>
-                            </button>
-                            <span class="num-likes">{{playlist.likes}}</span>
-                        </div>
-                        <div class="comments">
-                            <button class="comment-btn" data-playlist-id="{{playlist.id}}">
-                                <i class="fa-sharp fa-regular fa-comment"></i>
-                            </button>
-                            <span class="num-comments">{{playlist.comments}}</span>
-                        </div>
+    <div class="playlist-grid">
+        {{#each playlists as |playlist|}}
+        <div class="playlist-grid-item">
+            <img src="{{playlist.image_url}}" alt="{{playlist.name}}">
+            <div class="playlist-info">
+                <h3><a href="{{playlist.playlist_url}}" target="_blank"><span
+                            class="play-name">{{playlist.name}}</span></a></h3>
+                <p>{{playlist.description}}</p>
+                <div class="playlist-stats">
+                    <div class="likes">
+                        <button class="like-btn" data-playlist-id="{{playlist.id}}">
+                            <i class="fa-sharp fa-regular fa-heart"></i>
+                        </button>
+                        <span class="num-likes">{{playlist.likes}}</span>
+                    </div>
+                    <div class="comments">
+                        <button class="comment-btn" data-playlist-id="{{playlist.id}}">
+                            <i class="fa-sharp fa-regular fa-comment"></i>
+                        </button>
+                        <span class="num-comments">{{playlist.comments}}</span>
                     </div>
                 </div>
             </div>
-            {{/each}}
         </div>
-
+        {{/each}}
     </div>
+
+
 
 </body>
 
