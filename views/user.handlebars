@@ -43,26 +43,26 @@
         </aside>
     </div>
 
-        <div class="playlist-grid">
-            {{#each playlists as |playlist|}}
-            <div class="playlist-grid-item">
-                <img src="{{playlist.image_url}}" alt="{{playlist.name}}">
-                <div class="playlist-info">
-                    <h3><a href="{{playlist.playlist_url}}" target="_blank">{{playlist.name}}</a></h3>
-                    <p>{{playlist.description}}</p>
-                    <div class="playlist-stats">
-                        <div class="likes">
-                             <button class="like-btn" data-playlist-id="{{playlist.playlist_id}}">
-                                <i class="fa-sharp fa-regular fa-heart" data-playlist-id="{{playlist.playlist_id}}"></i>
-                            </button>
-                            <span class="num-likes">{{playlist.likes}}</span>
-                        </div>
-                        <div class="comments">
-                            <button class="comment-btn" data-playlist-id="{{playlist.id}}">
-                                <i class="fa-sharp fa-regular fa-comment"></i>
-                            </button>
-                            <span class="num-comments">{{playlist.comments}}</span>
-                        </div>
+    <div class="playlist-grid">
+        {{#each playlists as |playlist|}}
+        <div class="playlist-grid-item">
+            <img src="{{playlist.image_url}}" alt="{{playlist.name}}">
+            <div class="playlist-info">
+                <h3><a href="{{playlist.playlist_url}}" target="_blank"><span
+                            class="play-name">{{playlist.name}}</span></a></h3>
+                <p>{{playlist.description}}</p>
+                <div class="playlist-stats">
+                    <div class="likes">
+                        <button class="like-btn" data-playlist-id="{{playlist.id}}">
+                            <i class="fa-sharp fa-regular fa-heart"></i>
+                        </button>
+                        <span class="num-likes">{{playlist.likes}}</span>
+                    </div>
+                    <div class="comments">
+                        <button class="comment-btn" data-playlist-id="{{playlist.id}}">
+                            <i class="fa-sharp fa-regular fa-comment"></i>
+                        </button>
+                        <span class="num-comments">{{playlist.comments}}</span>
                     </div>
                 </div>
             </div>
