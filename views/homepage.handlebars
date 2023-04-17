@@ -15,6 +15,24 @@
 </head>
 
 <body>
+    <div class="comment-popup">
+        <div class="modal-header">
+            <h3>Comments</h3>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form>
+                <label for="comment">Add your comment:</label>
+                <textarea id="comment" name="comment"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+            <div class="comments-list">
+
+            </div>
+        </div>
+    </div>
+
+
     <div class="container">
         <div class="logo">
             <h1>Jam Session</h1>
@@ -60,6 +78,8 @@
                                 <i class="fa-sharp fa-regular fa-comment"
                                     data-playlist-id="{{playlist.playlist_id}}"></i>
                             </button>
+
+
                             <span class="num-comments">{{playlist.comments}}</span>
                         </div>
                     </div>
@@ -71,3 +91,4 @@
 
     <script src="/logout.js"></script>
     <script src="/likebutton.js"></script>
+    <script src="/comments.js"></script>
