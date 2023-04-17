@@ -1,9 +1,8 @@
 # Jam Session
 ## Description
 
-[Jam Session](github io here) A music social media site that connects to the Spotify API and allows users to create a profile where they can display all of the current songs they're listening to. A homepage will display the most recent posts from all users.
+A music social media site that connects to the Spotify API and allows users to create a profile where they can display all of the current songs they're listening to. A homepage will display the most recent posts from all users.
 
-![screenshot]()
 
 ## User Story
 
@@ -11,26 +10,32 @@ AS a music lover,
 I WANT to be able to share the songs I currently have on repeat with my friends and have access to theirs, 
 SO THAT we can continue to grow our personal music collection and discover new artists. 
 
+
 # How to Use Jam Session
 
 Here are step-by-step instructions for using the Jam Session website features.
 
+
 ## How To's
-1. Go to the Jam Session homepage here. [insert a hotlink somewhere]
+1. Go to the Jam Session [homepage](https://calm-tor-47120.herokuapp.com/). Sign up for a Jam Session account by clicking 'New to Jam Session' on the homepage.
 
-![screenshot]()
-
-
-2. Sign up for a Jam Session account.
-
-![screenshot]()
+![Intro page](public/intro%20page.png)
 
 
-3. Log into Jam Session
+2. Log into Jam Session with your email and your password.
 
-![screenshot]()
+![Login page](public/login-page.png)
 
-4. Explore your Jam Session session! You can view your top artist, your top songs, and your top playlists. Click on the links to visit your Spotify account.
+
+3. Explore your Jam Session profile! You can view your top artist, your top songs, and your top playlists. Click on the links to visit your Spotify account. 
+
+![Profile page](public/profile-page.png)
+
+
+4. Click the heart icon to favorite an album. Click on the speech bubble to leave a comment on an album!
+
+![Comments](public/comments.png)
+
 
 # Troubleshooting
 
