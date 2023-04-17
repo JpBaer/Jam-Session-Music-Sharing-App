@@ -15,16 +15,19 @@
         <a href="/intro"><button class="logout-btn" id="logout">Log Out</button></a>
     </div>
 
-
-    <div class="containerAside">
+    <div class="side-container">
         <aside>
             <img id="profile-picture" src="{{profile_picture_url}}">
-            <a href="/spotifylogin"><button class="btn btn-primary" id="spotify-button" type="submit">Connect to
-                    Spotify</button></a>
-            <h3>{{spotify_id}}</h3>
+            <a href="/spotifylogin">
+                <div class="spotify-btn">
+                    <button class="side default-side">Connect with Spotify</button>
+                    <button class="side hover-side"> Sync</button>
+                </div>
+            </a>
+            <h3>{{spotify_id}}: </h3>
             <h4>{{followers}} followers on Spotify</h4>
             <h2><span class="sep-font2">Current Favorites: </span>
-                <br><br>
+                <br>
                 <span class="sep-font">Songs</span>
             </h2>
             <hr>
@@ -38,6 +41,7 @@
             {{/each}}
 
         </aside>
+    </div>
 
         <div class="playlist-grid">
             {{#each playlists as |playlist|}}
@@ -62,10 +66,11 @@
                     </div>
                 </div>
             </div>
-            {{/each}}
         </div>
-
+        {{/each}}
     </div>
+
+
 
 </body>
 
