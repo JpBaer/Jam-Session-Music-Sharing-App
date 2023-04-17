@@ -5,6 +5,24 @@
 
 <body>
 
+    <div class="comment-popup">
+        <div class="modal-header">
+            <h3>Comments</h3>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form class="comment-form">
+                <label for="comment">Add your comment:</label>
+                <input id="comment" type="text" n />
+                {{!-- <textarea id="comment" name="comment"></textarea> --}}
+                <button type="submit">Submit</button>
+            </form>
+            <div class="comments-list">
+
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="logo">
             <a href="/home">
@@ -12,7 +30,7 @@
             </a>
         </div>
         <p id="user-welcome">Welcome, <span class="username">{{username}}</span>!</p>
-        <a href="/intro"><button class="logout-btn" id="logout">Log Out</button></a>
+        <a href="/"><button class="logout-btn" id="logout">Log Out</button></a>
     </div>
 
     <div class="side-container">
@@ -54,7 +72,7 @@
                 <div class="playlist-stats">
                     <div class="likes">
                         <button class="like-btn" data-playlist-id="{{playlist.playlist_id}}">
-                           <i class="fa-sharp fa-regular fa-heart" data-playlist-id="{{playlist.playlist_id}}"></i>
+                            <i class="fa-sharp fa-regular fa-heart" data-playlist-id="{{playlist.playlist_id}}"></i>
                         </button>
                         <span class="num-likes">{{playlist.likes}}</span>
                     </div>
@@ -76,5 +94,6 @@
 
 <script src="/logout.js"></script>
 <script src="/likebutton.js"></script>
+<script src="/comments.js"></script>
 
 </html>

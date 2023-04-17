@@ -285,3 +285,43 @@ i {
 .play-name:after {
     color: #24396c
 }
+
+.comment-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-image: linear-gradient(to left, #d8bbec, #bbc0e4);
+    box-shadow: 0 0 20px #43245c;
+    color: #24396c;
+    z-index: 9999;
+}
+
+.comment-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    text-align: center;
+    font-size: 22px;
+    text-shadow: 1px 1px #0d050f;
+    color: #c81ce3;
+    opacity: 70%;
+}
+
+.comments-list {
+    overflow-y: scroll;
+}
+
+.comment-popup .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+
+}
