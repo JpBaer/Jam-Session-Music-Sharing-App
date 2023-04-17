@@ -36,7 +36,8 @@ router.get('/home', withAuth, async (req, res) => {
 
 
     const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
-    // console.log(playlists);
+    console.log('****************');
+    console.log(playlists);
 
     var id = req.session.user_id;
     const userData = await User.findByPk(id);
@@ -47,18 +48,19 @@ router.get('/home', withAuth, async (req, res) => {
     // Code to get random songs and artists for home page
     //Grab all users
     const randomData = await User.findAll()
-
+    console.log(randomData)
     const songData = randomData.map((songData) => songData.get({ plain: true }));
-    console.log('****************************')
-    console.log(songData);
+    // console.log('****************************')
+    // console.log(songData);
     //Create empty arrays to store song and artist data
     const randomSongs = [];
     const randomArtists = [];
     //Grab three random songs and artists
+    
     for (let i = 0; i < 3; i++) {
       //grab a random user
       const randomUser = songData[getRandomInt(0, songData.length - 1)];
-      console.log(randomUser)
+      // console.log(randomUser)
       //grab a random song and artist and append to array
       let top_songs = JSON.parse(randomUser.top_songs)
       let top_artists = JSON.parse(randomUser.top_artists)
@@ -70,8 +72,9 @@ router.get('/home', withAuth, async (req, res) => {
 
     let random_Songs = { random_Songs: randomSongs };
     let random_Artists = { random_Artists: randomArtists };
-    console.log(random_Songs);
-    console.log(random_Artists);
+
+     console.log(random_Songs);
+     console.log(random_Artists);
     /*************** */
     res.render('homepage', {
       playlists,
@@ -99,9 +102,9 @@ router.get('/user/:id', withAuth, async (req, res) => {
 
     user.top_songs = JSON.parse(user.top_songs)
     user.top_artists = JSON.parse(user.top_artists)
-    console.log('*********************')
-    console.log(user);
-    console.log('*********************')
+    // console.log('*********************')
+    // console.log(user);
+    // console.log('*********************')
 
     res.render('user', {
       ...user,
