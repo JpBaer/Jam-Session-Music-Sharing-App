@@ -222,7 +222,7 @@ router.get('/callback', async (req, res) => {
                 //call to get users playlists
 
                 axios.get(`
-              https://api.spotify.com/v1/users/${spotify_id}/playlists`, {
+              https://api.spotify.com/v1/users/${spotify_id}/playlists/?limit=50`, {
                   headers: {
                     Authorization: `${token_type} ${access_token}`
                   }
@@ -235,15 +235,15 @@ router.get('/callback', async (req, res) => {
                   var user_id = req.session.user_id;
                   console.log(response.data);
 
-                  var len;
-                  if (response.data.items.length < 12) {
-                    len = response.data.items.length;
-                  }
-                  else {
-                    len = 12;
-                  }
+                  // var len;
+                  // if (response.data.items.length < 12) {
+                  //   len = response.data.items.length;
+                  // }
+                  // else {
+                  //   len = 12;
+                  // }
 
-                  for (let i = 0; i < len; i++) {
+                  for (let i = 0; i < response.data.items.length; i++) {
                     let singlePlaylistData = {
                       //User_id: User_id (not sure how to grab this)
                       name: response.data.items[i].name,
