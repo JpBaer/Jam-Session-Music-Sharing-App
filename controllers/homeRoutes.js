@@ -62,16 +62,22 @@ router.get('/home', withAuth, async (req, res) => {
       const randomUser = songData[getRandomInt(0, songData.length - 1)];
       // console.log(randomUser)
       //grab a random song and artist and append to array
+      if(randomUser.top_songs != null){
       let top_songs = JSON.parse(randomUser.top_songs)
       let top_artists = JSON.parse(randomUser.top_artists)
       let randomSong = top_songs[getRandomInt(0, top_songs.length - 1)]
       let randomArtist = top_artists[getRandomInt(0, top_artists.length - 1)]
       randomSongs.push(randomSong);
       randomArtists.push(randomArtist);
-    }
-
-    let random_Songs = { random_Songs: randomSongs };
-    let random_Artists = { random_Artists: randomArtists };
+      }
+    } 
+    let random_Artists ;
+    let random_Songs;
+    if(randomSongs.length > 0 ){
+    random_Songs = { random_Songs: randomSongs };}
+      
+    if(randomArtists.length > 0){
+    random_Artists = { random_Artists: randomArtists };}
 
      console.log(random_Songs);
      console.log(random_Artists);
@@ -128,7 +134,7 @@ router.get('/login', (req, res) => {
 //********************************** */
 const clientId = '6b9d8ca2f7a34e56b1aef2f870ddc9b5';
 const clientSecret = 'd759d5c054d74ab1ad40ee3a3db52010'
-const redirectUri = 'https://calm-tor-47120.herokuapp.com/callback';
+const redirectUri = 'http://localhost:3001/callback';
 //scopes are the what data we are asking the user to allow us access to
 // additional scopes: user-top-read user-library-read playlist-read-private playlist-read-collaborative
 const scopes = 'user-read-private user-read-email user-top-read user-library-read playlist-read-collaborative';
