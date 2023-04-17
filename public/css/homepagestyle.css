@@ -157,6 +157,7 @@ i {
 
 .play-name {
     color: #24396c;
+
     margin-top: 10px;
     font-size: 18px;
     text-decoration: none;
@@ -172,12 +173,13 @@ i {
 }
 
 .play-name:after {
+
     color: #24396c;
+
 }
 
 a {
     text-decoration: none;
-}
 
 .comment-popup {
     display: none;
@@ -216,4 +218,5 @@ a {
     right: 10px;
     font-size: 30px;
     cursor: pointer;
+
 }
