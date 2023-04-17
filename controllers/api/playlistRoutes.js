@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Playlist } = require('../../models');
+const { Playlist, Comment, User } = require('../../models');
 
 router.put('/like', async(req, res) => {
     try {
@@ -26,6 +26,27 @@ router.put('/like', async(req, res) => {
           res.status(200).json(updatedPlaylistData)
         
     } catch (err){
+        res.json(err);
+    }
+})
+
+router.get('/:playlist_id/comments', async(req, res) => {
+    try {
+        console.log('API Reached')
+        const playlist_id = req.params.playlist_id;
+        console.log(playlist_id)
+        const commentData = await Comment.findAll({ include: [{model:User}], where: {
+            playlist_id: playlist_id
+        }
+        })
+
+        console.log(commentData)
+        const comments = commentData.map((comments) => comments.get({ plain: true }));
+        console.log('**************************')
+        console.log(comments)
+        res.json(comments)
+    }
+    catch(err){
         res.json(err);
     }
 })
