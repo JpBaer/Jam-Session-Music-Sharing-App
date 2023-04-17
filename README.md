@@ -7,26 +7,30 @@
 
 ## User Story
 
-As a music lover, I want to be able to share the songs I currently have on repeat with my friends and have access to theirs, so we can continue to grow our personal music collection and discover new artists. 
+AS a music lover, 
+I WANT to be able to share the songs I currently have on repeat with my friends and have access to theirs, 
+SO THAT we can continue to grow our personal music collection and discover new artists. 
 
 # How to Use Jam Session
 
 Here are step-by-step instructions for using the Jam Session website features.
 
 ## How To's
-1. how tos for step 1
+1. Go to the Jam Session homepage here. [insert a hotlink somewhere]
 
 ![screenshot]()
 
 
-2. how to's for step 2
+2. Sign up for a Jam Session account.
 
 ![screenshot]()
 
 
-3. how to's for step 3
+3. Log into Jam Session
 
 ![screenshot]()
+
+4. Explore your Jam Session session! You can view your top artist, your top songs, and your top playlists. Click on the links to visit your Spotify account.
 
 # Troubleshooting
 
@@ -38,11 +42,14 @@ We used the following technologies for this website.
 
 | Tech         | Description |
 | ----------- | ----------- |
-| [Spotify API](https://developer.spotify.com/documentation/web-api) | API description |
-| [Handlebars](https://handlebarsjs.com/) | This is a templating language that generates HTML or other text formats.|
-| [Future technology goes here](https://handlebarsjs.com/) | description |
-| [Future technology goes here](https://handlebarsjs.com/) | description|
-| [Future technology goes here](https://handlebarsjs.com/) | description|
+| HTML, CSS | Styling languages for the front end |
+| [Node.JS](https://nodejs.org/) | Cross-platform, open-source server environment |
+| [Express](https://expressjs.com/) | Node.js web app framework |
+| [Handlebars](https://handlebarsjs.com/) | This is a templating language that generates HTML or other text formats|
+| [Spotify API](https://developer.spotify.com/documentation/web-api) | API that enables applications to interact with Spotify services. |
+| [Nodemon](https://nodemon.io/) | Nodemon monitors changes in the source and can automatically restart the server |
+| [Axios](https://axios-http.com/docs/intro) | A promise-based HTTP Client for node.js and the browser |
+
 
 # Google Presentation
 
