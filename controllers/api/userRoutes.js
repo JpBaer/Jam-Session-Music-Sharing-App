@@ -14,6 +14,9 @@ router.post('/', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
+      req.session.randomSongs = false;
+      req.session.randomArtists = false;
+    
 
       res.status(200).json(userData);
     });
@@ -45,6 +48,8 @@ router.post('/login', async (req, res) => {
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
+            req.session.randomSongs = false;
+            req.session.randomArtists = false;
 
             res.json({ user: userData, message: 'Successfully logged in! Enjoy' });
         });

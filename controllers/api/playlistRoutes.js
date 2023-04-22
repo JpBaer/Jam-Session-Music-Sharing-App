@@ -35,9 +35,9 @@ router.get('/:playlist_id/comments', async(req, res) => {
         console.log('API Reached')
         const playlist_id = req.params.playlist_id;
         console.log(playlist_id)
-        const commentData = await Comment.findAll({ include: [{model:User}], where: {
+        const commentData = await Comment.findAll({where: {
             playlist_id: playlist_id
-        }
+        }, include: [{model:User}]
         })
 
         console.log(commentData)
