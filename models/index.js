@@ -1,6 +1,8 @@
 const User = require('./User');
 const Playlist = require('./Playlist');
-const Comment = require('./Comment')
+const Comment = require('./Comment');
+const Message = require('./Message')
+const Conversation = require('./Conversation')
 
 User.hasMany(Playlist, {
     foreignKey: 'user_id',
@@ -29,4 +31,36 @@ Comment.belongsTo(User,{
     foreignKey: 'user_id'
 })
 
-module.exports = { User, Playlist, Comment };
+//Messages Associations
+
+User.hasMany(Message, {
+    as:"SentMessage",
+    foreignKey:'sender_id'
+})
+
+User.hasMany(Message,{
+    as:"ReceivedMessage",
+    foreignKey: 'receiver_id'
+})
+
+Message.belongsTo(User, {
+    as:"Sender",
+    foreignKey: "sender_id",
+    allowNull: false
+});
+
+Message.belongsTo(User,{
+    as:"Receiver",
+    foreignKey: "receiver_id",
+    allowNull: false
+});
+
+Message.belongsTo(Conversation, {allowNull: false}, {
+    foreignKey: 'conversation_id',
+});
+
+Conversation.hasMany(Message,{
+    foreignKey: "conversation_id"
+});
+
+module.exports = { User, Playlist, Comment, Message, Conversation };

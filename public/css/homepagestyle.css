@@ -43,7 +43,8 @@ body {
 }
 
 .logout-btn,
-.profile-btn {
+.profile-btn,
+.messages-btn {
     font-family: 'Monda', sans-serif;
     /* background-color: #243a6ca0; */
     background-color: #d588e13e;
@@ -59,7 +60,7 @@ body {
 
 .logout-btn {
     margin-right: 50px;
-    margin-left: -150px;
+    /* margin-left: -50px; */
 }
 
 button:active {

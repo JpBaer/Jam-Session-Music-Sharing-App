@@ -1,0 +1,1 @@
+document.querySelector('.messages-btn').addEventListener('click', logout);
