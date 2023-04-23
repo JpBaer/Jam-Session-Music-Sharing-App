@@ -90,6 +90,16 @@ h1:hover:after {
     color: #fff;  
 }
 
+.messages-btn:active {
+    background: #7484e7;
+    outline: none;
+    color: azure;
+}
+
+.messages-btn:hover {
+    background-color: #5fe4fbda;
+}
+
 .logout-btn {
     font-family: 'Monda', sans-serif;
     /* background-color: #243a6ca0; */

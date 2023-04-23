@@ -63,4 +63,18 @@ Conversation.hasMany(Message,{
     foreignKey: "conversation_id"
 });
 
+//Conversation Associations
+
+User.hasMany(Conversation, {
+    foreignKey: 'user1'
+});
+
+User.hasMany(Conversation, {
+    foreignKey: 'user2'
+});
+
+Conversation.belongsTo(User, {as: 'Creator', foreignKey: 'user1', allowNull: false});
+
+Conversation.belongsTo(User, {as: 'Recipient', foreignKey: 'user2', allowNull: false});
+
 module.exports = { User, Playlist, Comment, Message, Conversation };
