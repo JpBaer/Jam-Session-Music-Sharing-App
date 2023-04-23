@@ -23,7 +23,6 @@ router.get('/', async (req, res) => {
   }
 })
 
-//Render homepage
 router.get('/home', withAuth, async (req, res) => {
   try {
     const playlistData = await Playlist.findAll({
@@ -155,9 +154,9 @@ router.get('/user/:id', withAuth, async (req, res) => {
 
     user.top_songs = JSON.parse(user.top_songs)
     user.top_artists = JSON.parse(user.top_artists)
-    console.log('*********************')
-    console.log(user.top_songs);
-    console.log('*********************')
+    // console.log('*********************')
+    // console.log(user);
+    // console.log('*********************')
 
     res.render('user', {
       ...user,
@@ -178,15 +177,11 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-
-
-//Pull spotify data when user syncs to spotify account
 //********************************** */
 const clientId = '6b9d8ca2f7a34e56b1aef2f870ddc9b5';
 const clientSecret = 'd759d5c054d74ab1ad40ee3a3db52010'
 // const redirectUri = 'https://calm-tor-47120.herokuapp.com/callback';
 const redirectUri = 'http://localhost:3001/callback';
-
 //scopes are the what data we are asking the user to allow us access to
 // additional scopes: user-top-read user-library-read playlist-read-private playlist-read-collaborative
 const scopes = 'user-read-private user-read-email user-top-read user-library-read playlist-read-collaborative';
@@ -206,8 +201,11 @@ router.get('/spotifylogin', function (req, res) {
 });
 
 
-
-// /callback grabs authorization code contained in URL, renders user page at the end of the fetch process
+//This is the big daddy
+//First app.get grabs the code from the above response
+// /callback
+//Will this '/' get interfere with loading the normal homepage? or can we have this in the api section?
+//This should bring the user to their populated homepage
 router.get('/callback', async (req, res) => {
   var id = req.session.user_id;
   var code = req.query.code || null;
@@ -335,8 +333,6 @@ router.get('/callback', async (req, res) => {
                     //response for top tracks
                     .then(response => {
                       //save topTracks as a variable
-                      console.log('*****************************')
-                      console.log(response.data.items[0].artists[0].name)
                       if (response.data.items.length != 0) {
                         var topTracks = [[response.data.items[0].name, response.data.items[0].artists[0].name], [response.data.items[1].name, response.data.items[1].artists[0].name], [response.data.items[2].name, response.data.items[2].artists[0].name], [response.data.items[3].name, response.data.items[3].artists[0].name], [response.data.items[4].name, response.data.items[4].artists[0].name]];
                       }
