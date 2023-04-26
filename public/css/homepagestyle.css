@@ -33,6 +33,7 @@ body {
     color: #c81ce3b0;
     font-family: 'Monda', sans-serif;
     text-shadow: .5px .5px #43245c;
+    align-content: center;
 }
 
 .username {
@@ -44,14 +45,21 @@ body {
 .logout-btn,
 .profile-btn {
     font-family: 'Monda', sans-serif;
-    background-color: #243a6ca0;
-    font-size: 20px;
+    /* background-color: #243a6ca0; */
+    background-color: #d588e13e;
+    padding: 0px 15px;
+    font-size: 17px;
     border: none;
-    color: #5fe4fbc6;
+    border-radius: 20px;
+    /* color: #5fe4fbc6; */
+    color: #fff;
+    
+    
 }
 
 .logout-btn {
     margin-right: 50px;
+    margin-left: -150px;
 }
 
 button:active {

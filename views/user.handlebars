@@ -50,7 +50,7 @@
             </h2>
             <hr>
             {{#each top_songs as |top_song|}}
-            <p>{{top_song}}</p>
+            <p>{{top_song.[0]}} - {{top_song.[1]}}</p>
             {{/each}}
             <hr>
             <h2><span class="sep-font">Artists</span></h2>

@@ -34,53 +34,99 @@ router.get('/home', withAuth, async (req, res) => {
       ],
     });
 
-
+ 
     const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
-    console.log('****************');
-    console.log(playlists);
+
+
+    //Grab user data for the logged in user
 
     var id = req.session.user_id;
     const userData = await User.findByPk(id);
-
     const user = userData.get({ plain: true });
 
-    //****************************** */
+   
+
     // Code to get random songs and artists for home page
     //Grab all users
+    
+
+    let random_Artists = {};
+    let random_Songs = {};
+    
+    //Check if session variables are empty
+    //if empty grab random song and artist data
+    if(req.session.randomSongs === false && req.session.randomArtists === false){
+      // console.log('Inside the loop')
+    
+    //Grab all users
     const randomData = await User.findAll()
-    console.log(randomData)
+    
     const songData = randomData.map((songData) => songData.get({ plain: true }));
-    // console.log('****************************')
-    // console.log(songData);
-    //Create empty arrays to store song and artist data
+   
+    //Create empty arrays for songs and artists
     const randomSongs = [];
     const randomArtists = [];
     //Grab three random songs and artists
     
+
+    //Loop through random users, and grab random songs and artists until both arrays have 3 items
+    //Probably should use a while loop here
     for (let i = 0; i < 3; i++) {
       //grab a random user
       const randomUser = songData[getRandomInt(0, songData.length - 1)];
-      // console.log(randomUser)
+  
       //grab a random song and artist and append to array
-      if(randomUser.top_songs != null){
+
+      //Check if user has any top songs and artists otherwise loop ends and i isnt incremented
+      if(randomUser.top_songs != null && randomUser.top_songs != "You don't have any top songs. You should listen to more music! " && randomUser.top_artists != "You don't have any top artists"){
       let top_songs = JSON.parse(randomUser.top_songs)
       let top_artists = JSON.parse(randomUser.top_artists)
-      let randomSong = top_songs[getRandomInt(0, top_songs.length - 1)]
-      let randomArtist = top_artists[getRandomInt(0, top_artists.length - 1)]
-      randomSongs.push(randomSong);
-      randomArtists.push(randomArtist);
+      //console.log(top_songs)
+     // console.log(top_artists)
+
+      //Add a random song to random songs array and make sure it's not a duplicate
+        while(true){
+        let randomSong = top_songs[getRandomInt(0, top_songs.length - 1)]
+        if(!randomSongs.includes(randomSong)){
+          randomSongs.push(randomSong); 
+          break
+        }
       }
-    } 
-    let random_Artists ;
-    let random_Songs;
+        //Add a random artist to random artists array and make sure it's not a duplicate
+        while(true){
+          let randomArtist = top_artists[getRandomInt(0, top_artists.length - 1)]
+          if(!randomArtists.includes(randomArtist)){
+            randomArtists.push(randomArtist);
+            break
+          }
+        }
+        } else{i--}
+      }
+    
+      
     if(randomSongs.length > 0 ){
-    random_Songs = { random_Songs: randomSongs };}
+    random_Songs = { random_Songs: randomSongs};
+  }
       
     if(randomArtists.length > 0){
-    random_Artists = { random_Artists: randomArtists };}
+    random_Artists = { random_Artists: randomArtists};
+  }
 
-     console.log(random_Songs);
-     console.log(random_Artists);
+    req.session.randomSongs = random_Songs;
+    req.session.randomArtists = random_Artists;
+      // console.log(req.session.randomSongs);
+      // console.log(req.session.randomArtists)
+    }
+    
+   
+    console.log('Session variables after the loop outside')
+    console.log(req.session.randomSongs);
+    console.log(req.session.randomArtists)
+
+    //If random session variables are already set, above loop wont run
+    //Sets random_songs and random_artists to the objects held in session variables
+    random_Songs = req.session.randomSongs;
+    random_Artists =  req.session.randomArtists;
     /*************** */
     res.render('homepage', {
       playlists,
@@ -134,6 +180,7 @@ router.get('/login', (req, res) => {
 //********************************** */
 const clientId = '6b9d8ca2f7a34e56b1aef2f870ddc9b5';
 const clientSecret = 'd759d5c054d74ab1ad40ee3a3db52010'
+// const redirectUri = 'https://calm-tor-47120.herokuapp.com/callback';
 const redirectUri = 'http://localhost:3001/callback';
 //scopes are the what data we are asking the user to allow us access to
 // additional scopes: user-top-read user-library-read playlist-read-private playlist-read-collaborative
@@ -287,7 +334,7 @@ router.get('/callback', async (req, res) => {
                     .then(response => {
                       //save topTracks as a variable
                       if (response.data.items.length != 0) {
-                        var topTracks = [response.data.items[0].name, response.data.items[1].name, response.data.items[2].name, response.data.items[3].name, response.data.items[4].name];
+                        var topTracks = [[response.data.items[0].name, response.data.items[0].artists[0].name], [response.data.items[1].name, response.data.items[1].artists[0].name], [response.data.items[2].name, response.data.items[2].artists[0].name], [response.data.items[3].name, response.data.items[3].artists[0].name], [response.data.items[4].name, response.data.items[4].artists[0].name]];
                       }
                       else {
                         var topTracks = ["You don't have any top songs. You should listen to more music! "]

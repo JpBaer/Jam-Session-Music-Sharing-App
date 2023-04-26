@@ -50,7 +50,7 @@
             <h2><span class="sep-font">Today's Song Picks</span></h2>
             <hr>
             {{#each random_Songs.random_Songs as |randomSong|}}
-            <p>{{randomSong}}</p>
+            <p>{{randomSong.[0]}} - {{randomSong.[1]}}</p>
             {{/each}}
             <hr>
             <h2><span class="sep-font">Today's Artist Picks</span></h2>
