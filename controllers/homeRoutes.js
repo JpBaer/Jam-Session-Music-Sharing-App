@@ -60,7 +60,7 @@ router.get('/home', withAuth, async (req, res) => {
     
     //Grab all users
     const randomData = await User.findAll()
-    
+    if(randomData.length > 0){
     const songData = randomData.map((songData) => songData.get({ plain: true }));
    
     //Create empty arrays for songs and artists
@@ -74,20 +74,24 @@ router.get('/home', withAuth, async (req, res) => {
     for (let i = 0; i < 3; i++) {
       //grab a random user
       const randomUser = songData[getRandomInt(0, songData.length - 1)];
-  
+      //console.log(randomUser)
       //grab a random song and artist and append to array
 
       //Check if user has any top songs and artists otherwise loop ends and i isnt incremented
       if(randomUser.top_songs != null && randomUser.top_songs != "You don't have any top songs. You should listen to more music! " && randomUser.top_artists != "You don't have any top artists"){
       let top_songs = JSON.parse(randomUser.top_songs)
       let top_artists = JSON.parse(randomUser.top_artists)
+      //console.log('****************************')
       //console.log(top_songs)
-     // console.log(top_artists)
+      //console.log(top_artists)
 
       //Add a random song to random songs array and make sure it's not a duplicate
         while(true){
         let randomSong = top_songs[getRandomInt(0, top_songs.length - 1)]
-        if(!randomSongs.includes(randomSong)){
+        console.log('****************')
+        console.log(randomSong)
+        console.log(randomSongs)
+        if(!randomSongs.find(el => el[0] ===randomSong[0])){
           randomSongs.push(randomSong); 
           break
         }
@@ -120,13 +124,14 @@ router.get('/home', withAuth, async (req, res) => {
     
    
     console.log('Session variables after the loop outside')
-    console.log(req.session.randomSongs);
-    console.log(req.session.randomArtists)
-
+   // console.log(req.session.randomSongs);
+    //console.log(req.session.randomArtists)
+  }
     //If random session variables are already set, above loop wont run
     //Sets random_songs and random_artists to the objects held in session variables
     random_Songs = req.session.randomSongs;
     random_Artists =  req.session.randomArtists;
+    
     /*************** */
     res.render('homepage', {
       playlists,

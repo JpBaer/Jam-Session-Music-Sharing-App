@@ -23,6 +23,11 @@ Message.init(
         },
         conversation_id: {
             type: DataTypes.INTEGER
+        },
+        //Add time so when you pull conversation it will sort by time, can be in UNIS
+        dateAdded: {
+            type: DataTypes.DATE,
+            defaultValue: Date.now()
         }
 
     },
