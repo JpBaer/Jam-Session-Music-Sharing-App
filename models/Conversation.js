@@ -8,6 +8,20 @@ Conversation.init({
     dateUpdated: {
     type: DataTypes.DATE,
     defaultValue: Date.now()
+    },
+    user1: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: "user",
+            key: "id"
+        }
+    },
+    user2: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: "user",
+            key: "id"
+        }
     }
 },
     {

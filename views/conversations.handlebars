@@ -1,0 +1,27 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/homepagestyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monda&display=swap" rel="stylesheet">
+    <title>Jam Session: Conversations</title>
+</head>
+
+  <div class="container">
+        <div class="logo">
+            <h1>Jam Session</h1>
+        </div>
+        <p id="user-welcome">Welcome, <span class="username">{{username}}</span>!</p>
+        {{#if logged_in}}
+        <a href="/user/{{id}}"><button class="profile-btn">Profile</button></a>
+        {{/if}}
+        <a href = "/conversations"><button class = "messages-btn">Messages</button></a>
+        <a><button class="logout-btn" id="logout">Log Out</button></a>
+    </div>

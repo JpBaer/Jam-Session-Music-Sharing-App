@@ -37,9 +37,13 @@
     <div class="container">
         <div class="logo">
             <h1>Jam Session</h1>
+            
         </div>
-        <p id="user-welcome">Welcome, <span class="username">{{username}}</span>!</p>
-        {{#if logged_in}}
+        <form class = "searchBar" action="/search" method="GET">
+        <input class = "search" type="text" name="q" placeholder="Search...">
+        <button class = "search-btn" type="submit">Search</button>
+        </form>
+         {{#if logged_in}}
         <a href="/user/{{id}}"><button class="profile-btn">Profile</button></a>
         {{/if}}
         <a href = "/conversations"><button class = "messages-btn">Messages</button></a>
@@ -48,6 +52,7 @@
 
     <div class="containerAside">
         <aside>
+             <p id="user-welcome">Welcome, <span class="username">{{username}}</span>!</p>
             <h2><span class="sep-font">Today's Song Picks</span></h2>
             <hr>
             {{#each random_Songs.random_Songs as |randomSong|}}

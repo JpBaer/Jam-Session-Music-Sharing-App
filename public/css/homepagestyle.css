@@ -12,7 +12,7 @@ body {
     align-items: center;
     line-height: 20px;
     position: fixed;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     width: 100%;
     z-index: 999;
     backdrop-filter: blur(10px);
@@ -29,7 +29,7 @@ body {
 }
 
 #user-welcome {
-    font-size: 20px;
+    font-size: 15px;
     color: #c81ce3b0;
     font-family: 'Monda', sans-serif;
     text-shadow: .5px .5px #43245c;
@@ -39,12 +39,13 @@ body {
 .username {
     font-family: 'Staatliches', cursive;
     color: #5fe4fbda;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .logout-btn,
 .profile-btn,
-.messages-btn {
+.messages-btn,
+.search-btn {
     font-family: 'Monda', sans-serif;
     /* background-color: #243a6ca0; */
     background-color: #d588e13e;
@@ -135,6 +136,22 @@ aside {
     display: flex;
     justify-content: space-around;
 }
+
+.searchBar{
+    padding: 0px 15px;
+
+}
+
+.search {
+  background-color: rgba(255, 255, 255, 0.317);
+  border: none;
+  color: #fff;
+}
+
+.search::placeholder {
+    color: #fff;
+    margin-left: 5px;
+  }
 
 .likes,
 .comments {
