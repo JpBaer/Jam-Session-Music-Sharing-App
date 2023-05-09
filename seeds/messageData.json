@@ -1,0 +1,20 @@
+[
+    {
+        "message": "Whats up nerd",
+        "sender_id": 1,
+        "receiver_id": 2,
+        "conversation_id": 1
+    },
+    {
+        "message": "Who ya calling nerd?",
+        "sender_id": 2,
+        "receiver_id": 1,
+        "conversation_id": 1
+    },
+    {
+        "message": "This is a test for a second conversation",
+        "sender_id": 1,
+        "receiver_id": 2,
+        "conversation_id": 2
+    }
+]

@@ -27,7 +27,7 @@ Message.init(
         //Add time so when you pull conversation it will sort by time, can be in UNIS
         dateAdded: {
             type: DataTypes.DATE,
-            defaultValue: Date.now()
+            defaultValue: DataTypes.NOW,
         }
 
     },

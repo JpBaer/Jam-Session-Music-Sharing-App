@@ -37,13 +37,13 @@ router.get('/home', withAuth, async (req, res) => {
  
     const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
 
-
+    console.log(playlists)
     //Grab user data for the logged in user
 
     var id = req.session.user_id;
     const userData = await User.findByPk(id);
     const user = userData.get({ plain: true });
-
+    console.log(userData);
    
 
     // Code to get random songs and artists for home page
@@ -56,7 +56,7 @@ router.get('/home', withAuth, async (req, res) => {
     //Check if session variables are empty
     //if empty grab random song and artist data
     if(req.session.randomSongs === false && req.session.randomArtists === false){
-      // console.log('Inside the loop')
+       console.log('Setting new session variables for randomSongs and randomArtists')
     
     //Grab all users
     const randomData = await User.findAll()
@@ -74,16 +74,16 @@ router.get('/home', withAuth, async (req, res) => {
     for (let i = 0; i < 3; i++) {
       //grab a random user
       const randomUser = songData[getRandomInt(0, songData.length - 1)];
-      //console.log(randomUser)
+      console.log(randomUser)
       //grab a random song and artist and append to array
-
+     
       //Check if user has any top songs and artists otherwise loop ends and i isnt incremented
       if(randomUser.top_songs != null && randomUser.top_songs != "You don't have any top songs. You should listen to more music! " && randomUser.top_artists != "You don't have any top artists"){
       let top_songs = JSON.parse(randomUser.top_songs)
       let top_artists = JSON.parse(randomUser.top_artists)
-      //console.log('****************************')
-      //console.log(top_songs)
-      //console.log(top_artists)
+      console.log('****************************')
+      console.log(randomUser.top_songs)
+      console.log(randomUser.top_artists)
 
       //Add a random song to random songs array and make sure it's not a duplicate
         while(true){
@@ -118,8 +118,8 @@ router.get('/home', withAuth, async (req, res) => {
 
     req.session.randomSongs = random_Songs;
     req.session.randomArtists = random_Artists;
-      // console.log(req.session.randomSongs);
-      // console.log(req.session.randomArtists)
+    console.log(req.session.randomSongs);
+    console.log(req.session.randomArtists)
     }
     
    
@@ -306,14 +306,13 @@ router.get('/callback', async (req, res) => {
 
                   for (let i = 0; i < response.data.items.length; i++) {
                     let singlePlaylistData = {
-                      //User_id: User_id (not sure how to grab this)
+                     
                       name: response.data.items[i].name,
                       playlist_id: response.data.items[i].id,
                       playlist_url: response.data.items[i].external_urls.spotify,
                       image_url: response.data.items[i].images[0].url,
                       user_id: user_id,
-                    }
-                      ;
+                    };
 
                     parsedPlaylistData.push(singlePlaylistData)
                   }
