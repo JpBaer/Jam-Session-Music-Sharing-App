@@ -40,6 +40,8 @@ router.get('/home', withAuth, async (req, res) => {
     console.log(playlists)
     //Grab user data for the logged in user
 
+    //******************************************* */
+    //This randomSongs and randomArtists code should be destructured into a seperate function to be called in the /home route
     var id = req.session.user_id;
     const userData = await User.findByPk(id);
     const user = userData.get({ plain: true });
@@ -131,8 +133,10 @@ router.get('/home', withAuth, async (req, res) => {
     //Sets random_songs and random_artists to the objects held in session variables
     random_Songs = req.session.randomSongs;
     random_Artists =  req.session.randomArtists;
+
+    //When above code is refactored into seperate function it should return random_Songs and random_Artists
+    //****************************************************************** */
     
-    /*************** */
     res.render('homepage', {
       playlists,
       ...user,
@@ -182,7 +186,8 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-//********************************** */
+//******************************************************************* */
+//Spotfy routes should be separated into its own spotifyRoutes.js file
 const clientId = '6b9d8ca2f7a34e56b1aef2f870ddc9b5';
 const clientSecret = 'd759d5c054d74ab1ad40ee3a3db52010'
 // const redirectUri = 'https://calm-tor-47120.herokuapp.com/callback';
@@ -249,16 +254,13 @@ router.get('/callback', async (req, res) => {
             var spotify_id = response.data.id;
             var followers = response.data.followers.total;
 
-
+            // check if user has a profile image and store
             if (response.data.images.length != 0) {
               var profile_picture_url = response.data.images[0].url;
             }
 
             console.log(spotify_id);
             console.log(followers);
-
-            //we want to grab most listened to playlists, followers, top artists, top 5 songs
-            //including playlist images
 
 
             //call to get users favorite artists
@@ -268,13 +270,13 @@ router.get('/callback', async (req, res) => {
               }
             })
 
-              //Take data from favorite artist call break it into variable
-              //to add to user info in database we'll have to do an update request
+              //Take data from favorite artist call and set it to variable
 
               .then(response => {
                 if (response.data.items.length != 0) {
                   var topArtists = [response.data.items[0].name, response.data.items[1].name, response.data.items[2].name, response.data.items[3].name, response.data.items[4].name];
                 }
+                //if the user has no top artists, we set a default message to be displayed
                 else {
                   var topArtists = ["You don't have any top artists"];
                 }
@@ -290,19 +292,13 @@ router.get('/callback', async (req, res) => {
 
                   //response is playlist data  
                 }).then(response => {
-                  //console.log(response.data)
+      
+                  
                   //Set up a variable to hold parsed data
                   var parsedPlaylistData = [];
                   var user_id = req.session.user_id;
                   console.log(response.data);
 
-                  // var len;
-                  // if (response.data.items.length < 12) {
-                  //   len = response.data.items.length;
-                  // }
-                  // else {
-                  //   len = 12;
-                  // }
 
                   for (let i = 0; i < response.data.items.length; i++) {
                     let singlePlaylistData = {
@@ -313,19 +309,14 @@ router.get('/callback', async (req, res) => {
                       image_url: response.data.items[i].images[0].url,
                       user_id: user_id,
                     };
-
+                    //add playlist dat aobject to array
                     parsedPlaylistData.push(singlePlaylistData)
                   }
                   console.log(parsedPlaylistData)
 
-
+                  //Add all playlists to database
                   const createNewPlaylists = () => Playlist.bulkCreate(parsedPlaylistData, { ignoreDuplicates: true });
-                  // for(let i=0;i<parsedPlaylistData.length;i++){
-                  //   const newPlaylist = Playlist.create(
-                  //     parsedPlaylistData[i]
-                  //   );
-                  // }
-                  //create a loop that runs Playlist.Create with associated user-id to generate all playlists
+                  
 
 
                   //call to get top tracks
@@ -336,7 +327,7 @@ router.get('/callback', async (req, res) => {
                   })
                     //response for top tracks
                     .then(response => {
-                      //save topTracks as a variable
+                      //save topTracks as a variable with track name and artist
                       if (response.data.items.length != 0) {
                         var topTracks = [[response.data.items[0].name, response.data.items[0].artists[0].name], [response.data.items[1].name, response.data.items[1].artists[0].name], [response.data.items[2].name, response.data.items[2].artists[0].name], [response.data.items[3].name, response.data.items[3].artists[0].name], [response.data.items[4].name, response.data.items[4].artists[0].name]];
                       }
@@ -345,13 +336,14 @@ router.get('/callback', async (req, res) => {
                       }
                       console.log(topTracks);
 
-
+                      //Stringify to JSON object for database entry
                       var topArtistsString = JSON.stringify(topArtists);
                       var topTracksString = JSON.stringify(topTracks);
 
-                      //create id variable to be used in the user update
+                     
 
                       console.log(user_id)
+                      //Check if a profile picture was pulled from api
                       if (profile_picture_url) {
                         var newUserData = {
                           spotify_id: spotify_id,
@@ -388,7 +380,7 @@ router.get('/callback', async (req, res) => {
                       // Run user.update to add tracks to user model
 
 
-                      // res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
+                      //Create function that calls playlist creation function and update User function
                       const updateSpotifyData = async () => {
                         await createNewPlaylists();
                         await updatedUser();

@@ -1,29 +1,34 @@
 const router = require('express').Router();
 const {User, Message, Conversation } = require('../models');
 const withAuth = require('../utils/auth');
-
+const Op = require('sequelize').Op
 
 //Grab all conversation id's and receiver ids to display
 //Grab all conversation for current user
 router.get('/', withAuth, async (req, res) => {
   try {
-    console.log('hello')
+    console.log('conversation route /get')
+    console.log(req.session.user_id)
     const conversationData = await Conversation.findAll({
       where: {
         [Op.or]: [
           { user1: req.session.user_id },
           { user2: req.session.user_id }
         ]
-      },
-      include: [{ model: Message }]
+      }
+      ,
+     // {model:Tag, through: ProductTag, as: 'taggedProducts'}
+      include: [{ model: Message },{model: User, as: 'Creator'},{model: User, as: 'Recipient'}
+      ]
     });
     console.log('**********************')
-    console.log(conversationData)
+   
     // Check if there is any conversation data returned by the query
-    if (!conversationData) {
+    if (!conversationData.length) {
       // Render the conversation page with an empty conversations array
       return res.render('conversations', {
         conversations: [],
+        id: req.session.user_id,
         logged_in: req.session.logged_in
       });
     }
@@ -32,8 +37,12 @@ router.get('/', withAuth, async (req, res) => {
     const conversations = conversationData.map((conv) =>
       conv.get({ plain: true })
     );
+
+   
+    console.log(conversations)
     res.render('conversations', {
-      conversations,
+      id: req.session.user_id,
+      conversations: conversations,
       logged_in: req.session.logged_in
     });
   } catch (err) {

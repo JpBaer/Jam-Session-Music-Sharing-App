@@ -35,7 +35,7 @@ Conversation.init({
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'conversations',
+        modelName: 'conversation',
     })
 
  module.exports = Conversation   
