@@ -1,47 +1,49 @@
 body {
-    font-family: 'Monda', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(to left, #43245c, #b66aeb, #7484e7, #24396c);
+    /* background-image: linear-gradient(to left, #43245c, #b66aeb, #7484e7, #24396c); */
+    background-image: linear-gradient(to right, #00C4CC, #7C2AE8)
 
 }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    line-height: 20px;
+.navbar {
     position: fixed;
-    width: 100%;
-    z-index: 999;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+  }
 
-h1 {
-    text-decoration: none;
-    font-family: 'Staatliches', cursive;
-    padding-left: 50px;
-    text-shadow: 1px 1px #0d050f;
-    color: #c81ce3;
-    opacity: 70%;
-    display: block;
-    font-size: 2em;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-}
+  .nav-link{
+    color: white
+  }
 
-.logo {
+  .nav-link:hover{
+    color: rgba(255, 255, 255, 0.491)
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+
+  .navbar-brand {
+    margin-left: 15px;
+  }
+
+  .navbar-nav {
+    margin-right: 15px;
+  }
+
+  .logo {
     font-family: 'Staatliches', cursive;
     font-size: 50px;
-    padding-left: 30px;
+    padding-left: 50px;
     text-shadow: 1px 1px #0d050f;
-    color: #c81ce3;
-    opacity: 70%;
-
+    color: #ffffff;
+    opacity: 100%;
 }
 
 

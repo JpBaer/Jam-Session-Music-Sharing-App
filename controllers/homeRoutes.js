@@ -108,7 +108,6 @@ router.get('/home', withAuth, async (req, res) => {
         }
         } else{i--}
       }
-    
       
     if(randomSongs.length > 0 ){
     random_Songs = { random_Songs: randomSongs};
